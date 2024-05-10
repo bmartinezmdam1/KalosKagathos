@@ -1,11 +1,35 @@
 package com.example.fitnesscoach
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.fitnesscoach.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: ExerciseAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        recyclerView = binding.recyclerView
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+        val exerciseList = ArrayList<Exercise>()
+        val imageList = arrayOf(R.drawable.Principiante, R.drawable.Principiante, R.drawable.Principiante)
+        val nameList = arrayOf("Flexiones", "Sentadillas", "Plancha", "Burpees", "Abdominales")
+
+        for (i in imageList.indices) {
+            exerciseList.add(Exercise(imageList[i],"30 mins",nameList[i] ))
+        }
+
+        adapter = ExerciseAdapter(exerciseList)
+        recyclerView.adapter = adapter
     }
 }
+
