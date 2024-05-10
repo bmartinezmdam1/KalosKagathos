@@ -4,21 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layoutDescription="@xml/inicio_scene">
+    app:layoutDescription="@xml/inicio_scene"
+    >
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView"
         android:layout_centerHorizontal="true"
         android:layout_above="@id/imagenPrincipiante"
-        android:layout_marginBottom="80dp">
+        android:layout_marginBottom="80dp"
+        android:fontFamily="@font/Greek">
     </TextView>
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/imagenPrincipiante"
         android:layout_above="@id/botonPrincipiante"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/Principiante">
     </ImageView>
 
     <Button
@@ -31,13 +34,16 @@
         android:layout_centerHorizontal="true"
         android:text="PRINCIPIANTE"
         android:layout_marginBottom="20dp"
+        android:fontFamily="@font/Greek"
         ></Button>
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/imagenIntermedio"
         android:layout_above="@id/botonIntermedio"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/Intermedio"
+        android:fontFamily="@font/Greek">
     </ImageView>
     <Button
         android:layout_marginTop="20dp"
@@ -55,6 +61,7 @@
         android:id="@+id/imagenAvanzado"
         android:layout_above="@id/botonAvanzado"
         android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/Avanzado"
         >
     </ImageView>
     <Button
@@ -67,5 +74,6 @@
         android:layout_marginTop="20dp"
         android:layout_alignParentBottom="true"
 
-        android:text="AVANZADO"></Button>
+        android:text="AVANZADO"
+        android:fontFamily="@font/Greek"></Button>
 </RelativeLayout>
