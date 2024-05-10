@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Fitness coach</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="nombre_de_usuario">Nombre de usuario</string>
+    <string name="correo_electronico">Correo electronico</string>
+    <string name="password">Contraseña</string>
+    <string name="confirmar_pass">Confirmar contraseña</string>
 </resources>

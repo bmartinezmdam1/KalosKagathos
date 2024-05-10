@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "82560669216",
+    "project_id": "kaloskagathos11",
+    "storage_bucket": "kaloskagathos11.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:82560669216:android:494d43e15f13a5904dce45",
+        "android_client_info": {
+          "package_name": "com.example.fitnesscoach"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjYtW31GrJCReYeVhu0p4BrYOnon2MfBY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
