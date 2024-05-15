@@ -5,8 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
 
 class InicioActivity : Activity(){
     private lateinit var principianteBoton: Button
@@ -22,15 +20,15 @@ class InicioActivity : Activity(){
             avanzadoBoton = findViewById<Button>(R.id.botonAvanzado)
 
             principianteBoton.setOnClickListener {
-                abrirRutina()
+                abrirRutina(0)
             }
 
             intermedioBoton.setOnClickListener {
-                abrirRutina()
+                abrirRutina(1)
             }
 
             avanzadoBoton.setOnClickListener {
-                abrirRutina()
+                abrirRutina(2)
             }
         }
      catch (e: Exception) {
@@ -38,8 +36,9 @@ class InicioActivity : Activity(){
     }
     }
 
-    private fun abrirRutina() {
+    private fun abrirRutina(nivel: Int) {
         val intent = Intent(this, RutinaActivity::class.java)
+        intent.putExtra("nivel", nivel)
         startActivity(intent)
     }
     }

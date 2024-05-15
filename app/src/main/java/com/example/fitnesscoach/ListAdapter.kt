@@ -6,18 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
+import android.widget.ListAdapter
 import android.widget.TextView
 import com.example.fitnesscoach.R
 
-class ListAdapter(context: Context, dataArrayList: ArrayList<ListData>) :
-    ArrayAdapter<ListData>(context, R.layout.list_item, dataArrayList) {
+class ListAdapter(context: Context, dataArrayList: ArrayList<ListAdapter>) :
+    ArrayAdapter<ListAdapter>(context, R.layout.listitem, dataArrayList) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         var convertView = convertView
         val listData = getItem(position)
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.list_item, parent, false)
+            convertView = LayoutInflater.from(context).inflate(R.layout.listitem, parent, false)
         }
 
         val listImage = convertView!!.findViewById<ImageView>(R.id.listImage)

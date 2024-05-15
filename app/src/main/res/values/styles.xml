@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <family name="greekFont">
-        <font weight="400" style="normal" filePath="@font/Greek.ttf"></font>
-    </family>
+<item name="greek" type="font"></item>
 </resources>

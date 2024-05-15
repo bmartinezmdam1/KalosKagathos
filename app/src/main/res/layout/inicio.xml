@@ -13,7 +13,7 @@
         android:layout_centerHorizontal="true"
         android:layout_above="@id/imagenPrincipiante"
         android:layout_marginBottom="80dp"
-        android:fontFamily="@font/Greek">
+        android:fontFamily="@font/greek">
     </TextView>
     <ImageView
         android:layout_width="100dp"
@@ -21,7 +21,7 @@
         android:id="@+id/imagenPrincipiante"
         android:layout_above="@id/botonPrincipiante"
         android:layout_centerHorizontal="true"
-        app:srcCompat="@drawable/Principiante">
+        app:srcCompat="@drawable/principiante">
     </ImageView>
 
     <Button
@@ -34,7 +34,7 @@
         android:layout_centerHorizontal="true"
         android:text="PRINCIPIANTE"
         android:layout_marginBottom="20dp"
-        android:fontFamily="@font/Greek"
+        android:fontFamily="@font/greek"
         ></Button>
     <ImageView
         android:layout_width="100dp"
@@ -42,8 +42,8 @@
         android:id="@+id/imagenIntermedio"
         android:layout_above="@id/botonIntermedio"
         android:layout_centerHorizontal="true"
-        app:srcCompat="@drawable/Intermedio"
-        android:fontFamily="@font/Greek">
+        app:srcCompat="@drawable/intermedio"
+        android:fontFamily="@font/greek">
     </ImageView>
     <Button
         android:layout_marginTop="20dp"
@@ -61,7 +61,7 @@
         android:id="@+id/imagenAvanzado"
         android:layout_above="@id/botonAvanzado"
         android:layout_centerHorizontal="true"
-        app:srcCompat="@drawable/Avanzado"
+        app:srcCompat="@drawable/avanzado"
         >
     </ImageView>
     <Button
@@ -75,5 +75,5 @@
         android:layout_alignParentBottom="true"
 
         android:text="AVANZADO"
-        android:fontFamily="@font/Greek"></Button>
+        android:fontFamily="@font/greek"></Button>
 </RelativeLayout>

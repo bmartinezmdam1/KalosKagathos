@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         val exerciseList = ArrayList<Exercise>()
-        val imageList = arrayOf(R.drawable.Principiante, R.drawable.Principiante, R.drawable.Principiante)
+        val imageList = arrayOf(R.drawable.principiante, R.drawable.principiante, R.drawable.principiante)
         val nameList = arrayOf("Flexiones", "Sentadillas", "Plancha", "Burpees", "Abdominales")
 
         for (i in imageList.indices) {
