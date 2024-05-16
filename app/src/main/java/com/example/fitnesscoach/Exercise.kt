@@ -1,11 +1,12 @@
 package com.example.fitnesscoach
 
+import android.graphics.drawable.Drawable
 import android.media.Image
+import androidx.room.ColumnInfo
+import androidx.room.PrimaryKey
 
-class Exercise(s0: Int, s: String, s1: String) {
-    val time: CharSequence?
-    val name: CharSequence?
-    val image: Int
-
-    data class Exercise(val image: Image, val name: String, val reps: String)
-}
+data class Exercise(
+    @ColumnInfo(name = "NOMBRE") val nombre: String,
+    @ColumnInfo(name = "REPETICIONES") val repeticiones: String,
+    @ColumnInfo(name = "IMAGEN") val imagen: Drawable
+)
