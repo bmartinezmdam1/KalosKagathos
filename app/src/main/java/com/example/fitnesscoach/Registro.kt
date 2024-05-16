@@ -3,11 +3,17 @@ package com.example.fitnesscoach
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 class Registro : Activity(){
     private  val db = FirebaseFirestore.getInstance()
@@ -33,14 +39,18 @@ class Registro : Activity(){
         // Comprobar email válido y que no exista en Firebase
         if (!isEmailValid()) return
 
-        // TODO: Comprobar contraseñas
-
+        if (!isPasswordValid()) return
         // Guardar datos de registo en Firebase
-        db.collection("usuarios").document(editTextEmail.text.toString()).set() {
-            hashMapOf(
-                "nombre" to editTextNombre.text.toString(),
-                "contrasena" to editTextContrasena.text.toString()
-            )
+        try {
+            db.collection("usuarios").document(editTextEmail.text.toString()).set() {
+                hashMapOf(
+                    "nombre" to editTextNombre.text.toString(),
+                    "contrasena" to editTextContrasena.text.toString()
+                )
+            }
+        }
+        catch (e: Exception) {
+            Log.e("Error", "Error al añadir usuario: $e")
         }
 
         // TODO: Redirigir a login (segunda versión que envíe el email y pass al login e inicie sesión automáticamente)
@@ -73,21 +83,28 @@ class Registro : Activity(){
     }
 
     private fun isEmailValid(): Boolean {
+        var flag = false
         val email = editTextEmail.text.toString()
 
-        // TODO: Comprobar que el email cumpla con el formato de email
-        if (false) {
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             Toast.makeText(this, "El email no es correcto", Toast.LENGTH_SHORT).show()
-            return false
+            flag = false
         }
 
-        db.collection("usuarios").document(editTextEmail.text.toString()).get()
-        .addOnSuccessListener {
-            // return true
-        }.addOnFailureListener {
-            Toast.makeText(this, "El email ya está registrado", Toast.LENGTH_SHORT).show()
-            // return false
+        CoroutineScope(Dispatchers.Main).launch {
+                val documentSnapshot = withContext(Dispatchers.IO) {
+                    db.collection("usuarios").document(email).get().await()
+                }
+                if (documentSnapshot.exists()) {
+                    Toast.makeText(this@Registro, "El email ya está registrado", Toast.LENGTH_SHORT).show()
+                    flag = false
+                }
+            else {
+                    flag = true
+                }
+
         }
+        return flag
     }
 
     private fun isPasswordValid(): Boolean {
