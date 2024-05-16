@@ -3,6 +3,7 @@ package com.example.fitnesscoach
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -23,34 +24,72 @@ class Registro : Activity(){
         editTextEmail = findViewById(R.id.emailEdit)
         editTextContrasena = findViewById(R.id.passwordEdit)
         editTextConfirmarContrasena = findViewById(R.id.ConfirmarContrasena)
-
-        val buttonRegistro = findViewById<Button>(R.id.buttonRegistrarse)
-        if (isPasswordValid() && isUsernameValid()) {
-            buttonRegistro.setOnClickListener {
-                val email = intent.getStringExtra("email")
-                val activity = InicioActivity()
-                val bundle = Bundle()
-                bundle.putString("email", email)
-                startActivity(Intent(this, LoginActivity::class.java))
-                db.collection("usuarios").document(editTextEmail.text.toString()).set() {
-                    hashMapOf(
-                        "nombre" to editTextNombre.text.toString(),
-                        "contrasena" to editTextContrasena.text.toString(),
-                        "confirmarContrasena" to editTextConfirmarContrasena.text.toString()
-                    )
-                }
-            }
-        }
     }
+
+    fun btnRegistrar(view: View) {
+        // Comprobar nombre usuario
+        if (!isUsernameValid()) return
+
+        // Comprobar email válido y que no exista en Firebase
+        if (!isEmailValid()) return
+
+        // TODO: Comprobar contraseñas
+
+        // Guardar datos de registo en Firebase
+        db.collection("usuarios").document(editTextEmail.text.toString()).set() {
+            hashMapOf(
+                "nombre" to editTextNombre.text.toString(),
+                "contrasena" to editTextContrasena.text.toString()
+            )
+        }
+
+        // TODO: Redirigir a login (segunda versión que envíe el email y pass al login e inicie sesión automáticamente)
+
+
+
+        // if (isPasswordValid() && isUsernameValid()) {
+
+        /*
+        val email = intent.getStringExtra("email")
+        val activity = InicioActivity()
+        val bundle = Bundle()
+        bundle.putString("email", email)
+        startActivity(Intent(this, LoginActivity::class.java))
+
+         */
+    }
+
+
+
+
     private fun isUsernameValid(): Boolean {
         val username = editTextNombre.text.toString()
 
-        return if (username.length !in 6..20) {
+        if (username.length !in 6..20) {
             Toast.makeText(this, "El nombre de usuario debe tener entre 6 y 20 caracteres", Toast.LENGTH_SHORT).show()
-            false
+            return false
         }
-        else true
+        return true
     }
+
+    private fun isEmailValid(): Boolean {
+        val email = editTextEmail.text.toString()
+
+        // TODO: Comprobar que el email cumpla con el formato de email
+        if (false) {
+            Toast.makeText(this, "El email no es correcto", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        db.collection("usuarios").document(editTextEmail.text.toString()).get()
+        .addOnSuccessListener {
+            // return true
+        }.addOnFailureListener {
+            Toast.makeText(this, "El email ya está registrado", Toast.LENGTH_SHORT).show()
+            // return false
+        }
+    }
+
     private fun isPasswordValid(): Boolean {
         val password = editTextContrasena.text.toString()
         val passwordConfirmar = editTextConfirmarContrasena.text.toString()

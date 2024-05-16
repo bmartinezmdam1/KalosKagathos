@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:layoutDescription="@xml/register_scene">
+    tools:layoutDescription="@xml/register_scene"
+    tools:context=".Registro">
 
     <ImageView
         android:id="@+id/imageView"
@@ -89,6 +90,7 @@
         android:text="Registrate"
         android:layout_marginTop="40dp"
         android:backgroundTint="@color/purple_500"
-        android:textColor="@color/black" />
+        android:textColor="@color/black"
+        android:onClick="btnRegistrar" />
 
 </LinearLayout>

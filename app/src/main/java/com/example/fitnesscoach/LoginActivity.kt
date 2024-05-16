@@ -3,6 +3,7 @@ package com.example.fitnesscoach
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -27,6 +28,25 @@ class LoginActivity : Activity() {
         val bundle: Bundle? = intent.extras
         val email: String? = bundle?.getString("email")
 
+
+        buttonRegistro.setOnClickListener {
+                startActivity(Intent(this, Registro::class.java))
+        }
+    }
+
+    fun btnEmpezar(view: View) {
+        if (editTextUsername.text.toString().equals(nombre) && contrasena.toString().equals(contrasena)) {
+            val username = intent.getStringExtra("username")
+            val activity = InicioActivity()
+            val bundle = Bundle()
+            bundle.putString("username", username)
+            //activity.arguments = bundle
+            startActivity(Intent(this, InicioActivity::class.java))
+
+        }
+    }
+
+    fun comprobarUsuario(email: String) {
         db.collection("usuarios")
             .whereEqualTo("email", email)
             .get()
@@ -41,20 +61,6 @@ class LoginActivity : Activity() {
             .addOnFailureListener { exception ->
                 // Manejar el error
             }
-        buttonEmpezar.setOnClickListener {
-            if (editTextUsername.text.toString().equals(nombre) && contrasena.toString().equals(contrasena)) {
-                val username = intent.getStringExtra("username")
-                val activity = InicioActivity()
-                val bundle = Bundle()
-                bundle.putString("username", username)
-                //activity.arguments = bundle
-                startActivity(Intent(this, InicioActivity::class.java))
-
-            }
-        }
-        buttonRegistro.setOnClickListener {
-                startActivity(Intent(this, Registro::class.java))
-        }
     }
 
 }
