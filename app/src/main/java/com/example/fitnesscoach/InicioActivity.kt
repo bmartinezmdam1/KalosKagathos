@@ -37,7 +37,7 @@ class InicioActivity : Activity(){
     }
 
     private fun abrirRutina(nivel: Int) {
-        val intent = Intent(this, RutinaActivity::class.java)
+        val intent = Intent(this, ListadoEjercicios::class.java)
         intent.putExtra("nivel", nivel)
         startActivity(intent)
     }

@@ -5,4 +5,5 @@
     <string name="correo_electronico">Correo electronico</string>
     <string name="password">Contraseña</string>
     <string name="confirmar_pass">Confirmar contraseña</string>
+    <string name="perfil">Ajustes</string>
 </resources>
