@@ -13,7 +13,7 @@ import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var drawer: DrawerLayout
-    private lateinit var tooggle: ActionBarDrawerToggle
+    private lateinit var toggle: ActionBarDrawerToggle
      fun OnCreate(savedInstanceState: Bundle?) {
       super.onCreate(savedInstanceState)
       setContentView(R.layout.recycler)
@@ -23,8 +23,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
          drawer = findViewById(R.id.drawer_layout)
 
-         tooggle = ActionBarDrawerToggle(this,drawer,toolbar,R.string.perfil)
-         drawer.addDrawerListener(tooggle)
+         toggle = ActionBarDrawerToggle(this,drawer,toolbar,R.string.perfil)
+         drawer.addDrawerListener(toggle)
          supportActionBar?.setDisplayHomeAsUpEnabled(true)
          supportActionBar?.setHomeButtonEnabled(true)
 
@@ -35,8 +35,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when(item.itemId) {
-            R.id.nav_item_one -> Toast.makeText(this,"item1",Toast.LENGTH_SHORT).show()
+        when (item.itemId) {
+            R.id.nav_item_one -> {
+                val fragment = ajustes()
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.nav_item_one, fragment)
+                    .commit()
+            }
         }
         drawer.closeDrawer(GravityCompat.START)
         return true
@@ -44,16 +49,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onPostCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onPostCreate(savedInstanceState, persistentState)
-        tooggle.syncState()
+        toggle.syncState()
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        tooggle.onConfigurationChanged(newConfig)
+        toggle.onConfigurationChanged(newConfig)
     }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
-        if (tooggle.onOptionsItemSelected(item)) {
+        if (toggle.onOptionsItemSelected(item)) {
             return true
         }
         return super.onContextItemSelected(item)

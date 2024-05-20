@@ -15,12 +15,12 @@
         android:id="@+id/nav_header_imageView"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:src="@mipmap/ic_launcher"/>
+        android:src="@drawable/torch"/>
     <TextView
         android:id="@+id/nav_header_textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="16dp"
-        android:text="Proyecto"
+        android:text="@string/Usuario"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
 </LinearLayout>
