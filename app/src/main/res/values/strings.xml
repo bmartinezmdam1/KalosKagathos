@@ -11,4 +11,6 @@
     <string name="cambiarFoto">Cambiar foto</string>
     <string name="ActivarNotificaciones">Activar notificaciones</string>
     <string name="Usuario">Usuario</string>
+    <string name="bienvenido">Bienvenido</string>
+    <string name="noRegistrado">¿No tienes contraseña? Registrate</string>
 </resources>

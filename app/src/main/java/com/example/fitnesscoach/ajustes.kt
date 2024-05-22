@@ -36,8 +36,10 @@ class ajustes : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        boton1 = view.findViewById(R.id.cambiarFoto)
-        boton2 = view.findViewById(R.id.ActivarNotificaciones)
+        boton1 = requireView().findViewById(R.id.ActivarNotificaciones)
+        boton2 = requireView().findViewById(R.id.ActivarNotificaciones)
+
+
     }
 
     override fun onCreateView(
@@ -46,6 +48,7 @@ class ajustes : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_ajustes, container, false)
+
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

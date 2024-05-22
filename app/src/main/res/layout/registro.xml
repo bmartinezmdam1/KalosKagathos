@@ -71,7 +71,7 @@
         android:textColorHint="@color/black"
         android:backgroundTint="@color/black" />
 
-    <AutoCompleteTextView
+    <EditText
         android:id="@+id/ConfirmarContrasena"
         android:layout_width="300dp"
         android:layout_height="60dp"

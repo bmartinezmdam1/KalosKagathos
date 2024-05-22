@@ -7,13 +7,15 @@
     app:layoutDescription="@xml/inicio_scene"
     >
     <TextView
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView"
         android:layout_centerHorizontal="true"
         android:layout_above="@id/imagenPrincipiante"
         android:layout_marginBottom="80dp"
-        android:fontFamily="@font/greek">
+        android:fontFamily="@font/greek"
+        android:text="@string/bienvenido">
     </TextView>
     <ImageView
         android:layout_width="100dp"
