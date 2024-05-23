@@ -1,13 +1,12 @@
-package com.example.fitnesscoach
+package com.example.fitnesscoach.activities
 
 import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.example.fitnesscoach.R
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -15,7 +14,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
-class Registro : Activity(){
+class RegistroActivity : Activity(){
     private  val db = FirebaseFirestore.getInstance()
     private lateinit var editTextNombre: EditText
     private lateinit var editTextEmail: EditText
@@ -96,7 +95,7 @@ class Registro : Activity(){
                     db.collection("usuarios").document(email).get().await()
                 }
                 if (documentSnapshot.exists()) {
-                    Toast.makeText(this@Registro, "El email ya está registrado", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@RegistroActivity, "El email ya está registrado", Toast.LENGTH_SHORT).show()
                     flag = false
                 }
             else {

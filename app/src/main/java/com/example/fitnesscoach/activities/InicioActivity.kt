@@ -1,10 +1,11 @@
-package com.example.fitnesscoach
+package com.example.fitnesscoach.activities
 
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import com.example.fitnesscoach.R
 
 class InicioActivity : Activity(){
     private lateinit var principianteBoton: Button
@@ -37,9 +38,12 @@ class InicioActivity : Activity(){
     }
 
     private fun abrirRutina(nivel: Int) {
+        // TODO: Apuntar al recycler
+        /*
         val intent = Intent(this, ListadoEjercicios::class.java)
         intent.putExtra("nivel", nivel)
         startActivity(intent)
+        */
     }
-    }
+}
 

@@ -1,13 +1,12 @@
-package com.example.fitnesscoach
+package com.example.fitnesscoach.activities
 
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
+import com.example.fitnesscoach.R
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -34,20 +33,12 @@ class LoginActivity : Activity() {
 
 
         buttonRegistro.setOnClickListener {
-                startActivity(Intent(this, Registro::class.java))
+                startActivity(Intent(this, RegistroActivity::class.java))
         }
     }
 
     fun btnEmpezar(view: View) {
-        if (editTextUsername.text.toString().equals(nombre) && contrasena.toString().equals(contrasena)) {
-            val username = intent.getStringExtra("username")
-            val activity = InicioActivity()
-            val bundle = Bundle()
-            bundle.putString("username", username)
-            //activity.arguments = bundle
-            startActivity(Intent(this, InicioActivity::class.java))
-
-        }
+        startActivity(Intent(this, InicioActivity::class.java))
     }
 
     fun comprobarUsuario(email: String) {

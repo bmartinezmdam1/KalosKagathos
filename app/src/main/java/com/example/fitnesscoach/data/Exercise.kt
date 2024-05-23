@@ -1,4 +1,4 @@
-package com.example.fitnesscoach
+package com.example.fitnesscoach.data
 
 import android.graphics.drawable.Drawable
 import android.media.Image

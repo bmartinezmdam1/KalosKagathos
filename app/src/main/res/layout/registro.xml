@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:layoutDescription="@xml/register_scene"
-    tools:context=".Registro">
+    tools:context=".activities.RegistroActivity">
 
     <ImageView
         android:id="@+id/imageView"
