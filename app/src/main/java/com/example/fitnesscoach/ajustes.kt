@@ -39,6 +39,7 @@ class ajustes : Fragment() {
         boton1 = requireView().findViewById(R.id.ActivarNotificaciones)
         boton2 = requireView().findViewById(R.id.ActivarNotificaciones)
 
+        // comentario ejemplo rama master
 
     }
 
