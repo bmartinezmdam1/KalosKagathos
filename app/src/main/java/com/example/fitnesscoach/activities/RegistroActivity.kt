@@ -1,6 +1,8 @@
 package com.example.fitnesscoach.activities
 
 import android.app.Activity
+import android.content.Intent
+import android.opengl.GLSurfaceView
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -28,7 +30,7 @@ class RegistroActivity : Activity(){
         editTextNombre = findViewById(R.id.usernameEdit)
         editTextEmail = findViewById(R.id.emailEdit)
         editTextContrasena = findViewById(R.id.passwordEdit)
-        editTextConfirmarContrasena = findViewById(R.id.ConfirmarContrasena)
+        editTextConfirmarContrasena = findViewById(R.id.confirmEdit)
     }
 
     fun btnRegistrar(view: View) {
@@ -40,17 +42,23 @@ class RegistroActivity : Activity(){
 
         if (!isPasswordValid()) return
         // Guardar datos de registo en Firebase
+        //    try {
+        //      db.collection("usuarios").document(editTextEmail.text.toString()).set() {
+        //          hashMapOf(
+        //             "nombre" to editTextNombre.text.toString(),
+        //         "contrasena" to editTextContrasena.text.toString()
+        //       )
+        //      }
+        //     }
+        //   catch (e: Exception) {
+        //    Log.e("Error", "Error al añadir usuario: $e")
+        //
         try {
-            db.collection("usuarios").document(editTextEmail.text.toString()).set() {
-                hashMapOf(
-                    "nombre" to editTextNombre.text.toString(),
-                    "contrasena" to editTextContrasena.text.toString()
-                )
-            }
+            startActivity(Intent(this, LoginActivity::class.java))
         }
-        catch (e: Exception) {
-            Log.e("Error", "Error al añadir usuario: $e")
-        }
+            catch (e: Exception) {
+                e.printStackTrace()
+         }
 
         // TODO: Redirigir a login (segunda versión que envíe el email y pass al login e inicie sesión automáticamente)
 
