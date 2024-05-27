@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import androidx.recyclerview.widget.RecyclerView.Recycler
 import com.example.fitnesscoach.R
 
 class InicioActivity : Activity(){
@@ -44,6 +45,7 @@ class InicioActivity : Activity(){
         intent.putExtra("nivel", nivel)
         startActivity(intent)
         */
+        val intent = Intent(this, Recycler::class.java)
     }
 }
 

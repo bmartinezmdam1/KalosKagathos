@@ -29,6 +29,14 @@
             android:name=".activities.InicioActivity"
             android:exported="false">
         </activity>
+        <activity
+            android:name=".activities.EjerciciosAdapter"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".activities.Recycler"
+            android:exported="false">
+        </activity>
     </application>
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 </manifest>
