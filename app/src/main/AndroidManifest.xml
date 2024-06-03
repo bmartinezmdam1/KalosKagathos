@@ -36,7 +36,6 @@
             android:exported="false">
         </activity>
         <activity android:name=".activities.RecyclerFragment"/>
-
     </application>
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 </manifest>

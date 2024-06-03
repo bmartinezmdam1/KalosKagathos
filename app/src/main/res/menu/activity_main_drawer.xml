@@ -1,9 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
+<!-- res/menu/menu.xml -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-<group>
-    <item android:id="@+id/nav_item_one"
-        android:title="@string/perfil"
-        android:icon="@drawable/avanzado">
-    </item>
-</group>
+    <group>
+        <item
+            android:id="@+id/nav_item_one"
+            android:title="@string/perfil"
+            android:icon="@drawable/avanzado">
+        </item>
+        <item
+            android:id="@+id/nav_ajustes"
+            android:title="@string/ajustes"
+            android:icon="@drawable/ic_settings">
+        </item>
+    </group>
 </menu>
