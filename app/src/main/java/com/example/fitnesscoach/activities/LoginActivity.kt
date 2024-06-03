@@ -42,7 +42,6 @@ class LoginActivity : Activity() {
     }
 
     fun comprobarUsuario(email: String) {
-        var pasar = false
         CoroutineScope(Dispatchers.Main).launch {
             db.collection("usuarios")
                 .whereEqualTo("email", email)

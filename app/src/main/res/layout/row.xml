@@ -10,8 +10,14 @@
     android:paddingRight="@dimen/general_padding"
     android:paddingTop="@dimen/row_padding"
     tools:context=".activities.EjerciciosAdapter">
+    <View
+        android:id="@+id/circleView"
+        android:layout_width="@dimen/image"
+        android:layout_height="@dimen/image"
+        android:background="@drawable/circle"/>
 
     <TextView
+        android:layout_toEndOf="@+id/circleView"
         android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,6 +27,7 @@
         />
 
     <TextView
+        android:layout_alignStart="@+id/titleTextView"
         android:id="@+id/subtitleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

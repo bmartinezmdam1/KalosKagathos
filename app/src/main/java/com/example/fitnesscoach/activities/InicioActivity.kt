@@ -1,51 +1,69 @@
 package com.example.fitnesscoach.activities
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
-import androidx.recyclerview.widget.RecyclerView.Recycler
+import android.widget.FrameLayout
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.example.fitnesscoach.R
 
-class InicioActivity : Activity(){
+class InicioActivity : AppCompatActivity() {
     private lateinit var principianteBoton: Button
     private lateinit var intermedioBoton: Button
     private lateinit var avanzadoBoton: Button
+    private lateinit var textView: TextView
+    private lateinit var imagenPrincipiante: ImageView
+    private lateinit var imagenIntermedio: ImageView
+    private lateinit var imagenAvanzado: ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         try {
             super.onCreate(savedInstanceState)
             setContentView(R.layout.inicio)
 
-            principianteBoton = findViewById<Button>(R.id.botonPrincipiante)
-            intermedioBoton = findViewById<Button>(R.id.botonIntermedio)
-            avanzadoBoton = findViewById<Button>(R.id.botonAvanzado)
+            principianteBoton = findViewById(R.id.botonPrincipiante)
+            intermedioBoton = findViewById(R.id.botonIntermedio)
+            avanzadoBoton = findViewById(R.id.botonAvanzado)
+            textView = findViewById(R.id.textView)
+            imagenPrincipiante = findViewById(R.id.imagenPrincipiante)
+            imagenIntermedio = findViewById(R.id.imagenIntermedio)
+            imagenAvanzado = findViewById(R.id.imagenAvanzado)
 
             principianteBoton.setOnClickListener {
-                abrirRutina(0)
+                showFragment()
             }
 
             intermedioBoton.setOnClickListener {
-                abrirRutina(1)
+                showFragment()
             }
 
             avanzadoBoton.setOnClickListener {
-                abrirRutina(2)
+                showFragment()
             }
+        } catch (e: Exception) {
+            Log.e("Error:", e.toString())
         }
-     catch (e: Exception) {
-        Log.e("Error:", e.toString())
-    }
     }
 
-    private fun abrirRutina(nivel: Int) {
-        // TODO: Apuntar al recycler
-        /*
-        val intent = Intent(this, ListadoEjercicios::class.java)
-        intent.putExtra("nivel", nivel)
-        startActivity(intent)
-        */
-        val intent = Intent(this, Recycler::class.java)
+    private fun showFragment() {
+        val fragment = RecyclerFragment()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .commit()
+
+        // Ocultar las vistas del Activity
+        textView.visibility = View.GONE
+        imagenPrincipiante.visibility = View.GONE
+        imagenIntermedio.visibility = View.GONE
+        imagenAvanzado.visibility = View.GONE
+        principianteBoton.visibility = View.GONE
+        intermedioBoton.visibility = View.GONE
+        avanzadoBoton.visibility = View.GONE
+
+        // Mostrar el contenedor del Fragment
+        findViewById<FrameLayout>(R.id.fragment_container).visibility = View.VISIBLE
     }
 }
-
