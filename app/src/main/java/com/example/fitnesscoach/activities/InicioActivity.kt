@@ -45,6 +45,7 @@ class InicioActivity : AppCompatActivity() {
             }
         } catch (e: Exception) {
             Log.e("Error:", e.toString())
+            // test
         }
     }
 
