@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import com.example.fitnesscoach.R
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.CoroutineScope
@@ -38,25 +39,32 @@ class LoginActivity : Activity() {
     }
 
     fun btnEmpezar(view: View) {
-        startActivity(Intent(this, InicioActivity::class.java))
-    }
+        val username = editTextUsername.text.toString().trim()
+        val password = editTextPassword.text.toString().trim()
 
-    fun comprobarUsuario(email: String) {
-        CoroutineScope(Dispatchers.Main).launch {
-            db.collection("usuarios")
-                .whereEqualTo("email", email)
-                .get()
-                .addOnSuccessListener { documents ->
-                    for (document in documents) {
-                        nombre = document.getString("nombre").toString()
-                        contrasena = document.getString("contraseña").toString()
-                    }
-                }
-                .addOnFailureListener { exception ->
-
-                }
-
+        if (editTextUsername.text.isEmpty() || editTextPassword.text.isEmpty()) {
+            Toast.makeText(this, "Debe ingresar todos los campos", Toast.LENGTH_SHORT).show()
+            return
         }
+
+        db.collection("usuarios").document(username).get()
+            .addOnFailureListener {
+                Toast.makeText(this, "Error al acceder a la base de datos. Contacte con su administrador.", Toast.LENGTH_SHORT).show()
+            }
+            .addOnSuccessListener { document ->
+                if (document.data != null) {
+                    val storedPassword = document.getString("contrasena")
+                    if (storedPassword.equals(password)) {
+                        // Iniciar actividad de bienvenida o pantalla principal
+                        startActivity(Intent(this, InicioActivity::class.java))
+                    } else {
+                        Toast.makeText(this, "Contraseña incorrecta", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    Toast.makeText(this, "El usuario no existe", Toast.LENGTH_SHORT).show()
+                }
+            }
     }
+
 
 }
