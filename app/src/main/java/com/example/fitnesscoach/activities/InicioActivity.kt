@@ -1,13 +1,17 @@
 package com.example.fitnesscoach.activities
 
 import android.os.Bundle
-import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.fitnesscoach.Ajustes
 import com.example.fitnesscoach.R
 
 class InicioActivity : AppCompatActivity() {
@@ -20,32 +24,26 @@ class InicioActivity : AppCompatActivity() {
     private lateinit var imagenAvanzado: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        try {
-            super.onCreate(savedInstanceState)
-            setContentView(R.layout.inicio)
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.inicio)
 
-            principianteBoton = findViewById(R.id.botonPrincipiante)
-            intermedioBoton = findViewById(R.id.botonIntermedio)
-            avanzadoBoton = findViewById(R.id.botonAvanzado)
-            textView = findViewById(R.id.textView)
-            imagenPrincipiante = findViewById(R.id.imagenPrincipiante)
-            imagenIntermedio = findViewById(R.id.imagenIntermedio)
-            imagenAvanzado = findViewById(R.id.imagenAvanzado)
+        principianteBoton = findViewById(R.id.botonPrincipiante)
+        intermedioBoton = findViewById(R.id.botonIntermedio)
+        avanzadoBoton = findViewById(R.id.botonAvanzado)
+        textView = findViewById(R.id.textView)
+        imagenPrincipiante = findViewById(R.id.imagenPrincipiante)
+        imagenIntermedio = findViewById(R.id.imagenIntermedio)
+        imagenAvanzado = findViewById(R.id.imagenAvanzado)
 
-            principianteBoton.setOnClickListener {
-                showFragment()
-            }
-
-            intermedioBoton.setOnClickListener {
-                showFragment()
-            }
-
-            avanzadoBoton.setOnClickListener {
-                showFragment()
-            }
-        } catch (e: Exception) {
-            Log.e("Error:", e.toString())
-            // test
+        // Example button to show fragment
+        principianteBoton.setOnClickListener {
+            showFragment()
+        }
+        intermedioBoton.setOnClickListener {
+            showFragment()
+        }
+        avanzadoBoton.setOnClickListener {
+            showFragment()
         }
     }
 
@@ -56,6 +54,14 @@ class InicioActivity : AppCompatActivity() {
             .commit()
 
         // Ocultar las vistas del Activity
+        hideActivityViews()
+
+        // Mostrar el contenedor del Fragment
+        findViewById<FrameLayout>(R.id.fragment_container).visibility = View.VISIBLE
+    }
+
+
+    private fun hideActivityViews() {
         textView.visibility = View.GONE
         imagenPrincipiante.visibility = View.GONE
         imagenIntermedio.visibility = View.GONE
@@ -63,8 +69,23 @@ class InicioActivity : AppCompatActivity() {
         principianteBoton.visibility = View.GONE
         intermedioBoton.visibility = View.GONE
         avanzadoBoton.visibility = View.GONE
-
-        // Mostrar el contenedor del Fragment
-        findViewById<FrameLayout>(R.id.fragment_container).visibility = View.VISIBLE
+    }
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.activity_main_drawer, menu)
+        return true
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle item selection.
+        return when (item.itemId) {
+            R.id.nav_item_one -> {
+                val fragment = Ajustes()
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .commit()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }
