@@ -1,6 +1,7 @@
 package com.example.fitnesscoach.activities
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -34,41 +35,34 @@ class RegistroActivity : Activity(){
     fun btnRegistrar(view: View) {
         // Comprobar nombre usuario
         if (!isUsernameValid()) return
-
-        // Comprobar email válido y que no exista en Firebase
-        if (!isEmailValid()) return
-
         if (!isPasswordValid()) return
-        // Guardar datos de registo en Firebase
-        try {
-            db.collection("usuarios").document(editTextEmail.text.toString()).set() {
-                hashMapOf(
-                    "nombre" to editTextNombre.text.toString(),
-                    "contrasena" to editTextContrasena.text.toString()
-                )
+        // Comprobar email válido
+        val email = editTextEmail.text.toString()
+        if (!isEmailValid(email)) return
+
+        // Comprobar que que no exista en Firebase el email
+        db.collection("usuarios").document(email).get().addOnFailureListener {
+            Toast.makeText(this, "Ha ocurrido un error durante el guardado. Contacte con su administrador.", Toast.LENGTH_SHORT).show()
+        }.addOnSuccessListener { document ->
+            if (document.data != null) {
+                Toast.makeText(this, "El email ya existe en la base de datos", Toast.LENGTH_SHORT).show()
+                return@addOnSuccessListener
             }
+
+            // Guardar datos de registo en Firebase
+            val data = hashMapOf(
+                "nombre" to editTextNombre.text.toString(),
+                "contrasena" to editTextContrasena.text.toString()
+            );
+
+            db.collection("usuarios").document(editTextEmail.text.toString()).set(data)
+                .addOnSuccessListener {
+                    startActivity(Intent(this, LoginActivity::class.java))
+                }.addOnFailureListener {
+                    Toast.makeText(this, "Ha ocurrido un error durante el guardado. Contacte con su administrador.", Toast.LENGTH_SHORT).show()
+                }
         }
-        catch (e: Exception) {
-            Log.e("Error", "Error al añadir usuario: $e")
-        }
-
-        // TODO: Redirigir a login (segunda versión que envíe el email y pass al login e inicie sesión automáticamente)
-
-
-
-        // if (isPasswordValid() && isUsernameValid()) {
-
-        /*
-        val email = intent.getStringExtra("email")
-        val activity = InicioActivity()
-        val bundle = Bundle()
-        bundle.putString("email", email)
-        startActivity(Intent(this, LoginActivity::class.java))
-
-         */
     }
-
-
 
 
     private fun isUsernameValid(): Boolean {
@@ -81,32 +75,16 @@ class RegistroActivity : Activity(){
         return true
     }
 
-    private fun isEmailValid(): Boolean {
-        var flag = false
-        val email = editTextEmail.text.toString()
-
+    private fun isEmailValid(email: String): Boolean {
         if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             Toast.makeText(this, "El email no es correcto", Toast.LENGTH_SHORT).show()
-            flag = false
+            return false
         }
-
-        CoroutineScope(Dispatchers.Main).launch {
-                val documentSnapshot = withContext(Dispatchers.IO) {
-                    db.collection("usuarios").document(email).get().await()
-                }
-                if (documentSnapshot.exists()) {
-                    Toast.makeText(this@RegistroActivity, "El email ya está registrado", Toast.LENGTH_SHORT).show()
-                    flag = false
-                }
-            else {
-                    flag = true
-                }
-
-        }
-        return flag
+        return true
     }
 
     private fun isPasswordValid(): Boolean {
+        // TODO Verificar que ambas passwords son iguales....
         val password = editTextContrasena.text.toString()
         val passwordConfirmar = editTextConfirmarContrasena.text.toString()
 
