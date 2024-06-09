@@ -6,13 +6,13 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/nombreUser"
+        android:id="@+id/foto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"/>
 
     <ImageView
-        android:layout_below="@+id/nombreUser"
+        android:layout_below="@+id/foto"
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"
         android:layout_height="111dp"
@@ -20,20 +20,57 @@
         app:srcCompat="@drawable/sampleusericon" />
 
     <Button
-        android:id="@+id/cambiarFoto"
+        android:id="@+id/BorrarDatos"
         android:layout_width="190dp"
         android:layout_height="wrap_content"
-        android:text="@string/cambiarFoto"
+        android:text="@string/BorrarDatos"
         android:layout_below="@id/imageView2"
         android:layout_marginTop="50dp"
-        android:layout_centerHorizontal="true"/>
-
+        android:layout_centerHorizontal="true"
+        />
+    <Button
+        android:id="@+id/CambiarDatos"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:text="@string/Update"
+        android:layout_below="@id/BorrarDatos"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:onClick="onViewCreated"
+        />
     <Button
         android:id="@+id/ActivarNotificaciones"
         android:layout_width="190dp"
         android:layout_height="wrap_content"
         android:text="@string/ActivarNotificaciones"
-        android:layout_below="@id/cambiarFoto"
+        android:layout_below="@id/CambiarDatos"
         android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        />
+    <EditText
+        android:text="@string/correo_electronico"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:id="@+id/correoElectronico"
+        android:layout_below="@+id/ActivarNotificaciones"
+        android:layout_centerHorizontal="true"
+        />
+    <EditText
+        android:text="@string/nombre_de_usuario"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:id="@+id/NombreUser"
+        android:layout_below="@+id/correoElectronico"
+        android:layout_centerHorizontal="true"
+        />
+    <EditText
+        android:text="@string/contrasena"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:id="@+id/editContrasena"
+        android:layout_below="@+id/NombreUser"
+        android:layout_centerHorizontal="true"
+        android:inputType="textPassword"
+        />
+
 </RelativeLayout>

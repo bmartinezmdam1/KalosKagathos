@@ -75,7 +75,6 @@ class InicioActivity : AppCompatActivity() {
                     hideElements()
                     if (navController.currentDestination?.id == R.id.navigation_home ||
                         navController.currentDestination?.id == R.id.navigation_notifications) {
-
                         navController.navigate(R.id.navigation_dashboard)
                         true
                     } else {
@@ -87,10 +86,8 @@ class InicioActivity : AppCompatActivity() {
                     if (navController.currentDestination?.id == R.id.navigation_home ||
                         navController.currentDestination?.id == R.id.navigation_dashboard) {
                         val bundle = Bundle()
-                        val Ajustes = Ajustes()
                         bundle.putString("username", username)
-                        Ajustes.arguments = bundle
-                        navController.navigate(R.id.navigation_notifications)
+                        navController.navigate(R.id.navigation_notifications, bundle)
                         true
                     } else {
                         false

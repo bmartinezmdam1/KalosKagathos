@@ -32,5 +32,8 @@
     <string name="Ajustes">Ajustes</string>
     <string name="Ejercicios">Ejercicios</string>
     <string name="rutina">Rutina</string>
+    <string name="BorrarDatos">Borrar datos</string>
+    <string name="Update">Cambiar datos</string>
+    <string name="contrasena">Contraseña</string>
 
 </resources>
