@@ -47,7 +47,6 @@ class Ajustes : Fragment() {
         boton2 = view.findViewById(R.id.CambiarDatos)
         boton3 = view.findViewById(R.id.ActivarNotificaciones)
         imagen = view.findViewById(R.id.imageView2)
-        correo = view.findViewById(R.id.correoElectronico)
         nombre = view.findViewById(R.id.NombreUser)
         contrasena = view.findViewById(R.id.editContrasena)
         boton1.visibility = View.VISIBLE
@@ -59,6 +58,9 @@ class Ajustes : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
        // context?.let { createNotificationChannel(it) }
+        var username = arguments?.getString("username")
+        username = "Bienvenido $username"
+
         boton1.setOnClickListener {
             val username = arguments?.getString("username")
             if (username != null) {
@@ -87,34 +89,18 @@ class Ajustes : Fragment() {
             }
         }
         boton2.setOnClickListener {
+            val username = arguments?.getString("username")
+
             if (!isUsernameValid()) return@setOnClickListener
             if (!isPasswordValid()) return@setOnClickListener
-            if (!isEmailValid(correo.toString())) return@setOnClickListener
-            val username = arguments?.getString("username")
-            if (username != null) {
-                val docRef = db.collection("usuarios").document(username)
-                docRef.get()
-                    .addOnSuccessListener { document ->
-                        if (document.exists()) {
-                            docRef.delete()
-                    }
-                    }
-                db.collection("usuarios").document(correo.toString()).get().addOnFailureListener {
-                    Toast.makeText(getActivity(), "Ha ocurrido un error durante el guardado. Contacte con su administrador.", Toast.LENGTH_SHORT).show()
-                }.addOnSuccessListener { document ->
-                    if (document.data != null) {
-                        Toast.makeText(getActivity(),"El correo ya existe en la base de datos",Toast.LENGTH_SHORT).show();
-                        return@addOnSuccessListener
-                    }
-                }
             val data = hashMapOf(
                 "nombre" to nombre.text.toString(),
                 "contrasena" to contrasena.text.toString()
             );
-            db.collection("usuarios").document(correo.toString()).set(data)
+            db.collection("usuarios").document(username.toString()).set(data)
     }
     }
-    }
+
 
     fun btnActivarNotificaciones(view: View) {
        sendNotification(requireContext())
@@ -165,13 +151,6 @@ class Ajustes : Fragment() {
         return true
     }
 
-    private fun isEmailValid(email: String): Boolean {
-        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            Toast.makeText(getActivity(),"El formato del email no es correcto",Toast.LENGTH_SHORT).show();
-            return false
-        }
-        return true
-    }
 
     private fun isPasswordValid(): Boolean {
         // TODO Verificar que ambas passwords son iguales....

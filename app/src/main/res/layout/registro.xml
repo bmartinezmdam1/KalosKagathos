@@ -67,7 +67,7 @@
         android:id="@+id/confirmEdit"
         android:hint="@string/confirmar_pass"
         android:inputType="textPassword"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textColorHint="@color/black"
         android:backgroundTint="@color/black" />
 

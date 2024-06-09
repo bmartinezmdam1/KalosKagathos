@@ -35,5 +35,6 @@
     <string name="BorrarDatos">Borrar datos</string>
     <string name="Update">Cambiar datos</string>
     <string name="contrasena">Contraseña</string>
+    <string name="Bienvenido">Bienvenido</string>
 
 </resources>
