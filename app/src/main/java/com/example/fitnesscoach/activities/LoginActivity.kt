@@ -56,7 +56,11 @@ class LoginActivity : Activity() {
                     val storedPassword = document.getString("contrasena")
                     if (storedPassword.equals(password)) {
                         // Iniciar actividad de bienvenida o pantalla principal
-                        startActivity(Intent(this, InicioActivity::class.java))
+                        val bundle = Bundle()
+                        bundle.putString("username", username)
+                        val intent = Intent(this, InicioActivity::class.java)
+                        intent.putExtras(bundle)
+                        startActivity(intent)
                     } else {
                         Toast.makeText(this, "Contraseña incorrecta", Toast.LENGTH_SHORT).show()
                     }

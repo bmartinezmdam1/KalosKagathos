@@ -50,6 +50,9 @@ class Ajustes : Fragment() {
     fun btnCambiarFoto(view: View) {
         // Implementar lógica para cambiar la foto
     }
+    fun borrarDatos() {
+
+    }
 
     fun btnActivarNotificaciones(view: View) {
         sendNotification(requireContext())

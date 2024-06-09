@@ -1,10 +1,12 @@
 package com.example.fitnesscoach.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
@@ -13,6 +15,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.fitnesscoach.Ajustes
 import com.example.fitnesscoach.R
 import com.example.fitnesscoach.databinding.InicioBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -43,6 +46,7 @@ class InicioActivity : AppCompatActivity() {
                 R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
             )
         )
+        val username = intent.getStringExtra("username")
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
         principianteBoton = findViewById(R.id.botonPrincipiante)
@@ -52,35 +56,18 @@ class InicioActivity : AppCompatActivity() {
         imagenPrincipiante = findViewById(R.id.imagenPrincipiante)
         imagenIntermedio = findViewById(R.id.imagenIntermedio)
         imagenAvanzado = findViewById(R.id.imagenAvanzado)
-        val recyclerFragment = supportFragmentManager.findFragmentById(R.id.rutina) as? RecyclerFragment
 
         principianteBoton.setOnClickListener {
-            navigateToFragment(RecyclerFragment())
-            hideElements()
+            Toast.makeText(this, "Nivel intermedio activado", Toast.LENGTH_SHORT).show()
 
-            recyclerFragment?.view?.let { fragmentView ->
-                val recyclerView = fragmentView.findViewById<RecyclerView>(R.id.recycler)
-                recyclerView.visibility = View.VISIBLE
-            }
 
         }
         intermedioBoton.setOnClickListener {
-            navigateToFragment(RecyclerFragment())
-            hideElements()
+            Toast.makeText(this, "Nivel intermedio activado", Toast.LENGTH_SHORT).show()
 
-            recyclerFragment?.view?.let { fragmentView ->
-                val recyclerView = fragmentView.findViewById<RecyclerView>(R.id.recycler)
-                recyclerView.visibility = View.VISIBLE
-            }
         }
         avanzadoBoton.setOnClickListener {
-            navigateToFragment(RecyclerFragment())
-            hideElements()
-
-            recyclerFragment?.view?.let { fragmentView ->
-                val recyclerView = fragmentView.findViewById<RecyclerView>(R.id.recycler)
-                recyclerView.visibility = View.VISIBLE
-            }
+            Toast.makeText(this, "Nivel intermedio activado", Toast.LENGTH_SHORT).show()
         }
         navView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
@@ -88,6 +75,7 @@ class InicioActivity : AppCompatActivity() {
                     hideElements()
                     if (navController.currentDestination?.id == R.id.navigation_home ||
                         navController.currentDestination?.id == R.id.navigation_notifications) {
+
                         navController.navigate(R.id.navigation_dashboard)
                         true
                     } else {
@@ -98,6 +86,10 @@ class InicioActivity : AppCompatActivity() {
                     hideElements()
                     if (navController.currentDestination?.id == R.id.navigation_home ||
                         navController.currentDestination?.id == R.id.navigation_dashboard) {
+                        val bundle = Bundle()
+                        val Ajustes = Ajustes()
+                        bundle.putString("username", username)
+                        Ajustes.arguments = bundle
                         navController.navigate(R.id.navigation_notifications)
                         true
                     } else {
