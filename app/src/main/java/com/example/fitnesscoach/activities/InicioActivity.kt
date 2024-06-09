@@ -1,5 +1,8 @@
 package com.example.fitnesscoach.activities
 
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -106,8 +109,17 @@ class InicioActivity : AppCompatActivity() {
                 showElements()
             }
         }
+        scheduleNotification()
     }
 
+    private fun scheduleNotification() {
+        val intent = Intent(this, AlarmReceiver::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+
+        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val interval = 1000 * 10L
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, pendingIntent)
+    }
     private fun hideElements() {
         textView.visibility = View.GONE
         imagenPrincipiante.visibility = View.GONE

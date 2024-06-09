@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:text="@string/BorrarDatos"
         android:layout_below="@id/imageView2"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"
         />
     <Button
@@ -40,16 +40,26 @@
         android:layout_height="wrap_content"
         android:text="@string/Update"
         android:layout_below="@id/BorrarDatos"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
         android:onClick="onViewCreated"
         />
     <Button
-        android:id="@+id/ActivarNotificaciones"
+        android:id="@+id/MostrarDatos"
         android:layout_width="190dp"
         android:layout_height="wrap_content"
-        android:text="@string/ActivarNotificaciones"
+        android:text="@string/Update"
         android:layout_below="@id/CambiarDatos"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:onClick="onViewCreated"
+        />
+    <Button
+        android:id="@+id/cambiarFoto"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:text="@string/cambiarFoto"
+        android:layout_below="@id/MostrarDatos"
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
         />
@@ -59,7 +69,7 @@
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:id="@+id/NombreUser"
-        android:layout_below="@+id/ActivarNotificaciones"
+        android:layout_below="@+id/cambiarFoto"
         android:layout_centerHorizontal="true"
         android:textColorHint="@color/black"
         />

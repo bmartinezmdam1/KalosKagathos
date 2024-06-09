@@ -1,5 +1,4 @@
 package com.example.fitnesscoach
-
 import android.Manifest
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -20,6 +19,8 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import com.example.fitnesscoach.R
+import com.example.fitnesscoach.activities.Camera
 import com.example.fitnesscoach.activities.InicioActivity
 import com.example.fitnesscoach.activities.LoginActivity
 import com.google.firebase.firestore.FirebaseFirestore
@@ -45,7 +46,7 @@ class Ajustes : Fragment() {
         val view = inflater.inflate(R.layout.ajustes, container, false)
         boton1 = view.findViewById(R.id.BorrarDatos)
         boton2 = view.findViewById(R.id.CambiarDatos)
-        boton3 = view.findViewById(R.id.ActivarNotificaciones)
+        boton3 = view.findViewById(R.id.cambiarFoto)
         imagen = view.findViewById(R.id.imageView2)
         nombre = view.findViewById(R.id.NombreUser)
         contrasena = view.findViewById(R.id.editContrasena)
@@ -59,7 +60,6 @@ class Ajustes : Fragment() {
         super.onViewCreated(view, savedInstanceState)
        // context?.let { createNotificationChannel(it) }
         var username = arguments?.getString("username")
-        username = "Bienvenido $username"
 
         boton1.setOnClickListener {
             val username = arguments?.getString("username")
@@ -99,48 +99,12 @@ class Ajustes : Fragment() {
             );
             db.collection("usuarios").document(username.toString()).set(data)
     }
-    }
-
-
-    fun btnActivarNotificaciones(view: View) {
-       sendNotification(requireContext())
-    }
-
-    private fun createNotificationChannel(context: Context) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channelId = "mi_canal_id"
-            val channelName = "Mi Canal"
-            val channelDescription = "Descripción de mi canal"
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
-            val channel = NotificationChannel(channelId, channelName, importance).apply {
-                description = channelDescription
-            }
-            val notificationManager: NotificationManager =
-                context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(channel)
+        boton3.setOnClickListener {
+            val intent = Intent(activity, Camera::class.java)
+            startActivity(intent)
         }
     }
 
-    private fun sendNotification(context: Context) {
-        val channelId = "mi_canal_id"
-        val builder = NotificationCompat.Builder(context, channelId)
-            .setSmallIcon(R.drawable.bellnot) // Asegúrate de que tienes un icono válido
-            .setContentTitle("Es hora de entrenar!")
-            .setContentText("Es hora de entrenar!")
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-            .setAutoCancel(true)
-
-        with(NotificationManagerCompat.from(context)) {
-            if (ActivityCompat.checkSelfPermission(
-                    context,
-                    Manifest.permission.POST_NOTIFICATIONS
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
-                return
-            }
-            notify(1, builder.build())
-        }
-    }
     private fun isUsernameValid(): Boolean {
         val username = nombre.text.toString()
 
