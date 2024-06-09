@@ -12,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
@@ -20,6 +21,7 @@ import androidx.core.app.NotificationManagerCompat
 class Ajustes : Fragment() {
     private lateinit var boton1: Button
     private lateinit var boton2: Button
+    private lateinit var imagen: ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -31,6 +33,10 @@ class Ajustes : Fragment() {
         val view = inflater.inflate(R.layout.ajustes, container, false)
         boton1 = view.findViewById(R.id.cambiarFoto)
         boton2 = view.findViewById(R.id.ActivarNotificaciones)
+        imagen = view.findViewById(R.id.imageView2)
+        boton1.visibility = View.VISIBLE
+        boton2.visibility = View.VISIBLE
+        imagen.visibility = View.VISIBLE
         return view
     }
 

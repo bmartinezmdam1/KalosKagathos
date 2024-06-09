@@ -1,13 +1,42 @@
 package com.example.fitnesscoach.activities.ui.dashboard
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
+import com.example.fitnesscoach.activities.ui.home.HomeViewModel
+import com.example.fitnesscoach.databinding.FragmentDashboardBinding
+import com.example.fitnesscoach.databinding.FragmentHomeBinding
 
-class DashboardViewModel : ViewModel() {
+class DashboardViewModel {
+    private var _binding: FragmentDashboardBinding? = null
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding get() = _binding!!
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        val homeViewModel =
+            ViewModelProvider(this).get(HomeViewModel::class.java)
+
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+
+        val textView: TextView = binding.
+        homeViewModel.text.observe(viewLifecycleOwner) {
+            textView.text = it
+        }
+        return root
     }
-    val text: LiveData<String> = _text
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
