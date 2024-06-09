@@ -6,14 +6,17 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.example.fitnesscoach.R
 import com.example.fitnesscoach.databinding.InicioBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.apphosting.datastore.testing.DatastoreTestTrace.FirestoreV1Action.BeginTransaction
 
 class InicioActivity : AppCompatActivity() {
     private lateinit var principianteBoton: Button
@@ -42,7 +45,6 @@ class InicioActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-
         principianteBoton = findViewById(R.id.botonPrincipiante)
         intermedioBoton = findViewById(R.id.botonIntermedio)
         avanzadoBoton = findViewById(R.id.botonAvanzado)
@@ -50,7 +52,36 @@ class InicioActivity : AppCompatActivity() {
         imagenPrincipiante = findViewById(R.id.imagenPrincipiante)
         imagenIntermedio = findViewById(R.id.imagenIntermedio)
         imagenAvanzado = findViewById(R.id.imagenAvanzado)
+        val recyclerFragment = supportFragmentManager.findFragmentById(R.id.rutina) as? RecyclerFragment
 
+        principianteBoton.setOnClickListener {
+            navigateToFragment(RecyclerFragment())
+            hideElements()
+
+            recyclerFragment?.view?.let { fragmentView ->
+                val recyclerView = fragmentView.findViewById<RecyclerView>(R.id.recycler)
+                recyclerView.visibility = View.VISIBLE
+            }
+
+        }
+        intermedioBoton.setOnClickListener {
+            navigateToFragment(RecyclerFragment())
+            hideElements()
+
+            recyclerFragment?.view?.let { fragmentView ->
+                val recyclerView = fragmentView.findViewById<RecyclerView>(R.id.recycler)
+                recyclerView.visibility = View.VISIBLE
+            }
+        }
+        avanzadoBoton.setOnClickListener {
+            navigateToFragment(RecyclerFragment())
+            hideElements()
+
+            recyclerFragment?.view?.let { fragmentView ->
+                val recyclerView = fragmentView.findViewById<RecyclerView>(R.id.recycler)
+                recyclerView.visibility = View.VISIBLE
+            }
+        }
         navView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_dashboard -> {
@@ -111,5 +142,13 @@ class InicioActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         return navController.navigateUp() || super.onSupportNavigateUp()
+    }
+
+    private fun navigateToFragment(fragment: Fragment) {
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, fragment)
+        fragmentTransaction.addToBackStack(null)
+        fragmentTransaction.commit()
     }
 }
