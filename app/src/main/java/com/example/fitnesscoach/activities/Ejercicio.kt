@@ -5,5 +5,6 @@ import org.w3c.dom.Text
 
 data class Ejercicio(
     val name: String,
-    val repeticiones: String
+    val repeticiones: String,
+    val repeticiones1: Int
 )

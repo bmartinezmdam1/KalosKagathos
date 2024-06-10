@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +22,7 @@ class Ajustes : Fragment() {
     private lateinit var boton1: Button
     private lateinit var boton2: Button
     private lateinit var boton3: Button
+    private lateinit var boton4: Button
     private lateinit var imagen: ImageView
     private lateinit var correo: EditText
     private lateinit var nombre: EditText
@@ -38,6 +40,7 @@ class Ajustes : Fragment() {
         boton1 = view.findViewById(R.id.BorrarDatos)
         boton2 = view.findViewById(R.id.CambiarDatos)
         boton3 = view.findViewById(R.id.cambiarFoto)
+        boton4 = view.findViewById(R.id.MostrarDatos)
         imagen = view.findViewById(R.id.imageView2)
         nombre = view.findViewById(R.id.NombreUser)
         contrasena = view.findViewById(R.id.editContrasena)
@@ -98,6 +101,31 @@ class Ajustes : Fragment() {
         boton3.setOnClickListener {
             val intent = Intent(activity, Camera::class.java)
             startActivityForResult(intent, REQUEST_IMAGE_CAPTURE)
+        }
+        boton4.setOnClickListener {
+            val username = arguments?.getString("username")
+            if (username != null) {
+                val docRef = db.collection("usuarios").document(username)
+                docRef.get()
+                    .addOnSuccessListener { document ->
+                        if (document.exists()) {
+                            val nom = document.get("nombre")
+                            val contra = document.get("contrasena")
+                            docRef.delete()
+                                .addOnSuccessListener {
+                                        Toast.makeText(requireContext(), "Usuario :  $nom Contraseña $contra", Toast.LENGTH_SHORT).show()
+                                }
+                                .addOnFailureListener { e ->
+                                    println("Error al mostrar los datos del usuario $e")
+                                }
+                        } else {
+                            println("El usuario $username no existe.")
+                        }
+                    }
+                    .addOnFailureListener { e ->
+                        println("Error al obtener el usuario: $e")
+                    }
+            }
         }
     }
 
