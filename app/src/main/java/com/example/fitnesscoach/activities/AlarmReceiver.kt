@@ -10,7 +10,7 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import com.example.fitnesscoach.R
 import com.example.fitnesscoach.activities.InicioActivity
-import com.example.fitnesscoach.activities.NotificationService
+
 
 class AlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {

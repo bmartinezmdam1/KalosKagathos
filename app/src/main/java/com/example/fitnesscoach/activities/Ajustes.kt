@@ -1,11 +1,8 @@
 package com.example.fitnesscoach
-import android.Manifest
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.content.Context
+
+import android.app.Activity
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.os.Build
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,20 +11,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
-import com.example.fitnesscoach.R
 import com.example.fitnesscoach.activities.Camera
-import com.example.fitnesscoach.activities.InicioActivity
 import com.example.fitnesscoach.activities.LoginActivity
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.auth.FirebaseAuthCredentialsProvider
 
 class Ajustes : Fragment() {
-    private  val db = FirebaseFirestore.getInstance()
+    private val db = FirebaseFirestore.getInstance()
     private lateinit var boton1: Button
     private lateinit var boton2: Button
     private lateinit var boton3: Button
@@ -35,6 +25,7 @@ class Ajustes : Fragment() {
     private lateinit var correo: EditText
     private lateinit var nombre: EditText
     private lateinit var contrasena: EditText
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -58,7 +49,6 @@ class Ajustes : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-       // context?.let { createNotificationChannel(it) }
         var username = arguments?.getString("username")
 
         boton1.setOnClickListener {
@@ -71,8 +61,8 @@ class Ajustes : Fragment() {
                             docRef.delete()
                                 .addOnSuccessListener {
                                     println("Usuario $username eliminado con éxito.")
-                                    val intent = Intent (getActivity(), LoginActivity::class.java)
-                                    getActivity()?.startActivity(intent)
+                                    val intent = Intent(activity, LoginActivity::class.java)
+                                    startActivity(intent)
                                 }
                                 .addOnFailureListener { e ->
                                     println("Error al eliminar el usuario: $e")
@@ -88,6 +78,7 @@ class Ajustes : Fragment() {
                 println("El username es null.")
             }
         }
+
         boton2.setOnClickListener {
             val username = arguments?.getString("username")
 
@@ -96,12 +87,21 @@ class Ajustes : Fragment() {
             val data = hashMapOf(
                 "nombre" to nombre.text.toString(),
                 "contrasena" to contrasena.text.toString()
-            );
+            )
             db.collection("usuarios").document(username.toString()).set(data)
-    }
+        }
+
         boton3.setOnClickListener {
             val intent = Intent(activity, Camera::class.java)
-            startActivity(intent)
+            startActivityForResult(intent, REQUEST_IMAGE_CAPTURE)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
+            val imageUri: Uri? = data?.getStringExtra("image_uri")?.let { Uri.parse(it) }
+            imagen.setImageURI(imageUri)
         }
     }
 
@@ -109,21 +109,22 @@ class Ajustes : Fragment() {
         val username = nombre.text.toString()
 
         if (username.length !in 6..20) {
-            Toast.makeText(getActivity(),"El nombre de usuario tiene que tener entre 6 y 20 caracteres",Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, "El nombre de usuario tiene que tener entre 6 y 20 caracteres", Toast.LENGTH_SHORT).show()
             return false
         }
         return true
     }
 
-
     private fun isPasswordValid(): Boolean {
-        // TODO Verificar que ambas passwords son iguales....
         val password = contrasena.text.toString()
 
-        return if (password.length !in 6..20 ) {
-            Toast.makeText(getActivity(),"La contrasena tiene que tener entre 6 y 20 caracteres",Toast.LENGTH_SHORT).show();
+        return if (password.length !in 6..20) {
+            Toast.makeText(activity, "La contraseña tiene que tener entre 6 y 20 caracteres", Toast.LENGTH_SHORT).show()
             false
-        }
-        else true
+        } else true
+    }
+
+    companion object {
+        private const val REQUEST_IMAGE_CAPTURE = 1
     }
 }
