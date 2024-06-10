@@ -70,7 +70,7 @@ class InicioActivity : AppCompatActivity() {
         val username = intent.getStringExtra("username")
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-
+        sendNotification("es hora de entrenar!")
         principianteBoton = findViewById(R.id.botonPrincipiante)
         intermedioBoton = findViewById(R.id.botonIntermedio)
         avanzadoBoton = findViewById(R.id.botonAvanzado)
@@ -81,15 +81,15 @@ class InicioActivity : AppCompatActivity() {
 
         principianteBoton.setOnClickListener {
             Toast.makeText(this, "Nivel principiante activado", Toast.LENGTH_SHORT).show()
-            sendNotification()
+            sendNotification("Ahora eres principiante!")
         }
         intermedioBoton.setOnClickListener {
             Toast.makeText(this, "Nivel intermedio activado", Toast.LENGTH_SHORT).show()
-            sendNotification()
+            sendNotification("Ahora eres intermedio!")
         }
         avanzadoBoton.setOnClickListener {
             Toast.makeText(this, "Nivel avanzado activado", Toast.LENGTH_SHORT).show()
-            sendNotification()
+            sendNotification("Ahora eres avanzado!")
         }
 
         navView.setOnNavigationItemSelectedListener { item ->
@@ -182,21 +182,36 @@ class InicioActivity : AppCompatActivity() {
         }
     }
 
-    private fun sendNotification() {
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.POST_NOTIFICATIONS
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.POST_NOTIFICATIONS),
-                REQUEST_CODE_POST_NOTIFICATIONS
-            )
-            return
+    private fun sendNotification(message: String) {
+        val intent = Intent(this, InicioActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
+        val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+
+        val builder = NotificationCompat.Builder(this, CHANNEL_ID)
+            .setSmallIcon(R.drawable.kalos)
+            .setContentTitle("Es hora de entrenar!")
+            .setContentText(message)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(message))
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setContentIntent(pendingIntent)
+            .setAutoCancel(true)
 
         with(NotificationManagerCompat.from(this)) {
+            if (ActivityCompat.checkSelfPermission(
+                    this@InicioActivity,
+                    Manifest.permission.POST_NOTIFICATIONS
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return
+            }
             notify(NOTIFICATION_ID, builder.build())
         }
     }
@@ -206,7 +221,7 @@ class InicioActivity : AppCompatActivity() {
         when (requestCode) {
             REQUEST_CODE_POST_NOTIFICATIONS -> {
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                    sendNotification()
+                    sendNotification("es hora de entrenar!")
                 } else {
                     Toast.makeText(this, "Permission denied to post notifications", Toast.LENGTH_SHORT).show()
                 }
@@ -214,4 +229,3 @@ class InicioActivity : AppCompatActivity() {
         }
     }
 }
-
