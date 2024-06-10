@@ -4,10 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,8 +21,8 @@ class RecyclerFragment : Fragment() {
         val view = inflater.inflate(R.layout.rutina, container, false)
         recyclerView = view.findViewById(R.id.recycler)
         recyclerView.visibility = View.VISIBLE
-        val sitiosInteres = Recycler()
-        val adapter = EjerciciosAdapter(requireContext(), sitiosInteres)
+        val ejercicios = createEjercicios()
+        val adapter = EjerciciosAdapter(requireContext(), ejercicios)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter
 
@@ -33,38 +31,26 @@ class RecyclerFragment : Fragment() {
         drawable?.let {
             dividerItemDecoration.setDrawable(it)
         }
+        recyclerView.addItemDecoration(dividerItemDecoration)
+
         return view
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val navController = findNavController()
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            when (destination.id) {
-                R.id.navigation_home, R.id.navigation_notifications -> {
-                    hideElements()
-                }
-                else -> {
-                    showElements()
-                }
-            }
-        }
-    }
-
-    private fun hideElements() {
-        recyclerView.visibility = View.GONE
-    }
-
-    private fun showElements() {
-        recyclerView.visibility = View.VISIBLE
-    }
-
-    private fun Recycler(): List<Ejercicio> {
+    private fun createEjercicios(): List<Ejercicio> {
         return listOf(
-            Ejercicio("Flexiones", "20", 1),
-            Ejercicio("Sentadillas", "12", 2),
-            Ejercicio("Crunch abdominal", "12", 3),
-            Ejercicio("Dominadas supinas", "6", 4),
+            Ejercicio("Flexiones", "20 repeticiones"),
+            Ejercicio("Fondos en paralelas", "15 repeticiones"),
+            Ejercicio("Press militar", "10 repeticiones"),
+            Ejercicio("Elevaciones laterales", "20 repeticiones"),
+            Ejercicio("Extension de triceps", "20 repeticiones"),
+            Ejercicio("Dominadas supinas", "6 repeticiones"),
+            Ejercicio("Curl de biceps bayesian", "12 repeticiones"),
+            Ejercicio("Curl de biceps martillo", "12 repeticiones"),
+            Ejercicio("Sentadillas", "12 repeticiones"),
+            Ejercicio("Extensiones de cuadriceps", "12 repeticiones"),
+            Ejercicio("Curl femoral", "12 repeticiones"),
+            Ejercicio("Crunch abdominal", "12 repeticiones"),
+
         )
     }
 }

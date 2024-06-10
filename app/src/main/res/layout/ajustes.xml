@@ -14,7 +14,8 @@
         android:layout_marginBottom="50dp"
         android:layout_centerHorizontal="true"
         android:textSize="35sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:fontFamily="@font/greek_freak"/>
 
     <ImageView
         android:layout_marginTop="1dp"
@@ -27,36 +28,47 @@
 
     <Button
         android:id="@+id/BorrarDatos"
+        style="@style/ButtonStyle"
         android:layout_width="190dp"
         android:layout_height="wrap_content"
-        android:text="@string/BorrarDatos"
         android:layout_below="@id/imageView2"
-        android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
-        style="@style/ButtonStyle"
-        />
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="@string/BorrarDatos"
+        android:fontFamily="@font/greek_freak"/>
+
     <Button
         android:id="@+id/CambiarDatos"
+        style="@style/ButtonStyle"
         android:layout_width="190dp"
         android:layout_height="wrap_content"
-        android:text="@string/Update"
         android:layout_below="@id/BorrarDatos"
-        android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
         android:onClick="onViewCreated"
-        style="@style/ButtonStyle"
-        />
+        android:text="@string/Update"
+        android:fontFamily="@font/greek_freak"/>
+
     <Button
         android:id="@+id/MostrarDatos"
+        style="@style/ButtonStyle"
         android:layout_width="190dp"
         android:layout_height="wrap_content"
-        android:text="@string/Read"
         android:layout_below="@id/CambiarDatos"
-        android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
         android:onClick="onViewCreated"
-        style="@style/ButtonStyle"
-        />
+        android:text="@string/Read"
+        android:fontFamily="@font/greek_freak"/>
     <Button
         android:id="@+id/cambiarFoto"
         android:layout_width="190dp"
@@ -66,6 +78,7 @@
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
         style="@style/ButtonStyle"
+        android:fontFamily="@font/greek_freak"
         />
     <EditText
         android:layout_marginTop="10dp"
@@ -76,7 +89,7 @@
         android:layout_below="@+id/cambiarFoto"
         android:layout_centerHorizontal="true"
         android:textColorHint="@color/black"
-        />
+        android:fontFamily="@font/greek_freak"/>
     <EditText
         android:layout_width="300dp"
         android:layout_height="60dp"
@@ -87,6 +100,7 @@
         android:inputType="textPassword"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
-        android:backgroundTint="@color/black" />
+        android:backgroundTint="@color/black"
+        android:fontFamily="@font/greek_freak"/>
 
 </RelativeLayout>

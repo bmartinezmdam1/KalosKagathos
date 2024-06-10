@@ -4,16 +4,19 @@
     <item
         android:id="@+id/navigation_home"
         android:icon="@drawable/ic_home_black_24dp"
-        android:title="@string/title_home" />
+        android:title="@string/title_home"
+        android:fontFamily="@font/greek_freak"/>
 
     <item
         android:id="@+id/navigation_dashboard"
         android:icon="@drawable/images"
-        android:title="@string/Ejercicios" />
+        android:title="@string/Ejercicios"
+        android:fontFamily="@font/greek_freak"/>
 
     <item
         android:id="@+id/navigation_notifications"
         android:icon="@drawable/settings"
-        android:title="@string/Ajustes" />
+        android:title="@string/Ajustes"
+        android:fontFamily="@font/greek_freak"/>
 
 </menu>

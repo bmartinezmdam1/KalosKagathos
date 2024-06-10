@@ -20,10 +20,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Iniciar sesión"
+        android:text="@string/IniciarSesion"
         android:textColor="@color/black"
         android:textSize="35sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:fontFamily="@font/greek_freak"/>
 
 
     <EditText
@@ -35,7 +36,8 @@
         android:textColor="@color/black"
         android:backgroundTint="@color/white"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/greek_freak"/>
     <EditText
         android:id="@+id/editContrasena"
         android:layout_width="300dp"
@@ -46,12 +48,13 @@
         android:backgroundTint="@color/white"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
-        android:password="true"/>
+        android:password="true"
+        android:fontFamily="@font/greek_freak"/>
     <Button
         android:id="@+id/buttonEMPEZAR"
         android:layout_width="330dp"
         android:layout_height="70dp"
-        android:text="EMPEZAR"
+        android:text="@string/Empezar"
         android:layout_marginTop="0dp"
         android:layout_marginBottom="16dp"
         android:onClick="btnEmpezar"
@@ -61,12 +64,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/noRegistrado"
-        android:layout_marginBottom="20dp"></TextView>
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/greek_freak"></TextView>
     <Button
         android:id="@+id/buttonRegistrar"
         android:layout_width="330dp"
         android:layout_height="70dp"
-        android:text="REGISTRARSE"
+        android:text="@string/registrarse"
         android:layout_marginTop="0dp"
         android:layout_marginBottom="16dp"
         style="@style/ButtonStyle"

@@ -42,5 +42,9 @@
     <string name="Read">Mostrar datos</string>
     <string name="nuevaContraseña">Nueva contraseña</string>
     <string name="NuevoNombre">Nuevo nombre de usuario</string>
+    <string name="intermedio">INTERMEDIO</string>
+    <string name="avanzado">AVANZADO</string>
+    <string name="Empezar">EMPEZAR</string>
+    <string name="IniciarSesion">Iniciar Sesión</string>
 
 </resources>

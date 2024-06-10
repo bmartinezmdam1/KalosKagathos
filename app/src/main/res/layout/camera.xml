@@ -29,7 +29,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         style="@style/ButtonStyle"
-        android:gravity="center"
+        android:fontFamily="@font/greek_freak"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

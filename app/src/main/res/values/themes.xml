@@ -6,7 +6,6 @@
     </style>
 
     <style name="Theme.FitnessCoach" parent="Base.Theme.FitnessCoach">
-        <item name="font">@font/greek</item>
         <item name="windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
     </style>

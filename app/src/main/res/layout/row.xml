@@ -24,7 +24,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="15dp"
         android:paddingStart="@dimen/text_row_padding_image"
-        />
+        android:fontFamily="@font/greek_freak" />
 
     <TextView
         android:layout_alignStart="@+id/titleTextView"
@@ -33,5 +33,5 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="180dp"
         android:paddingStart="@dimen/text_row_padding_image"
-        />
+        android:fontFamily="@font/greek_freak" />
 </RelativeLayout>

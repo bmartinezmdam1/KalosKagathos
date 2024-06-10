@@ -60,7 +60,7 @@ class Ajustes : Fragment() {
                         if (document.exists()) {
                             docRef.delete()
                                 .addOnSuccessListener {
-                                    println("Usuario $username eliminado con éxito.")
+                                    Toast.makeText(requireContext(), "Usuario $username eliminado con éxito.", Toast.LENGTH_SHORT).show()
                                     val intent = Intent(activity, LoginActivity::class.java)
                                     startActivity(intent)
                                 }
@@ -88,7 +88,11 @@ class Ajustes : Fragment() {
                 "nombre" to nombre.text.toString(),
                 "contrasena" to contrasena.text.toString()
             )
-            db.collection("usuarios").document(username.toString()).set(data)
+            db.collection("usuarios").document(username.toString()).set(data).addOnSuccessListener {
+                Toast.makeText(requireContext(), "Datos cambiados", Toast.LENGTH_SHORT).show()
+            }.addOnFailureListener {
+                Toast.makeText(requireContext(), "Algo ha fallado...", Toast.LENGTH_SHORT).show()
+            }
         }
 
         boton3.setOnClickListener {

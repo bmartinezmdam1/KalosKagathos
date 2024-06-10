@@ -24,7 +24,6 @@ class EjerciciosAdapter(private val context: Context, private val ejercicios: Li
             fun bindRow(ejer: Ejercicio) {
                 titleTextView.text = ejer.name.toString()
                 subtitleTextView.text = ejer.repeticiones.toString()
-                val ejercicioID = ejer.id.toString()
             }
         }
     }
