@@ -91,6 +91,7 @@
         android:layout_marginTop="40dp"
         android:backgroundTint="@color/purple_500"
         android:textColor="@color/black"
-        android:onClick="btnRegistrar" />
+        android:onClick="btnRegistrar"
+        style="@style/ButtonStyle"/>
 
 </LinearLayout>

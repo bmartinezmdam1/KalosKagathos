@@ -55,6 +55,7 @@
         android:layout_marginTop="0dp"
         android:layout_marginBottom="16dp"
         android:onClick="btnEmpezar"
+        style="@style/ButtonStyle"
  />
     <TextView
         android:layout_width="wrap_content"
@@ -68,6 +69,7 @@
         android:text="REGISTRARSE"
         android:layout_marginTop="0dp"
         android:layout_marginBottom="16dp"
+        style="@style/ButtonStyle"
         />
 
 
