@@ -1,9 +1,14 @@
 package com.example.fitnesscoach.activities
 
+import android.Manifest
 import android.app.AlarmManager
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -11,20 +16,24 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.navigation.NavController
+import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
+import com.example.fitnesscoach.R
+import com.example.fitnesscoach.databinding.InicioBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.recyclerview.widget.RecyclerView
-import com.example.fitnesscoach.Ajustes
-import com.example.fitnesscoach.R
-import com.example.fitnesscoach.databinding.InicioBinding
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.apphosting.datastore.testing.DatastoreTestTrace.FirestoreV1Action.BeginTransaction
 
 class InicioActivity : AppCompatActivity() {
+    companion object {
+        const val REQUEST_CODE_POST_NOTIFICATIONS = 1001
+        const val CHANNEL_ID = "canal1"
+        const val NOTIFICATION_ID = 1
+    }
+
     private lateinit var principianteBoton: Button
     private lateinit var intermedioBoton: Button
     private lateinit var avanzadoBoton: Button
@@ -32,15 +41,23 @@ class InicioActivity : AppCompatActivity() {
     private lateinit var imagenPrincipiante: ImageView
     private lateinit var imagenIntermedio: ImageView
     private lateinit var imagenAvanzado: ImageView
-    private lateinit var nombreUser: ImageView
     private lateinit var binding: InicioBinding
+
+    private val builder by lazy {
+        NotificationCompat.Builder(this, CHANNEL_ID)
+            .setSmallIcon(R.drawable.kalos)
+            .setContentTitle("Es hora de entrenar!")
+            .setContentText("Han pasado 24 horas desde tu último entrenamiento. Es hora de entrenar!")
+            .setStyle(NotificationCompat.BigTextStyle().bigText("Han pasado 24 horas desde tu último entrenamiento. Es hora de entrenar!"))
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = InicioBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.toolbar) // Configurar la Toolbar como ActionBar
+        setSupportActionBar(binding.toolbar)
 
         val navView: BottomNavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
@@ -52,6 +69,7 @@ class InicioActivity : AppCompatActivity() {
         val username = intent.getStringExtra("username")
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
         principianteBoton = findViewById(R.id.botonPrincipiante)
         intermedioBoton = findViewById(R.id.botonIntermedio)
         avanzadoBoton = findViewById(R.id.botonAvanzado)
@@ -61,17 +79,18 @@ class InicioActivity : AppCompatActivity() {
         imagenAvanzado = findViewById(R.id.imagenAvanzado)
 
         principianteBoton.setOnClickListener {
-            Toast.makeText(this, "Nivel intermedio activado", Toast.LENGTH_SHORT).show()
-
-
+            Toast.makeText(this, "Nivel principiante activado", Toast.LENGTH_SHORT).show()
+            sendNotification()
         }
         intermedioBoton.setOnClickListener {
             Toast.makeText(this, "Nivel intermedio activado", Toast.LENGTH_SHORT).show()
-
+            sendNotification()
         }
         avanzadoBoton.setOnClickListener {
-            Toast.makeText(this, "Nivel intermedio activado", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Nivel avanzado activado", Toast.LENGTH_SHORT).show()
+            sendNotification()
         }
+
         navView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_dashboard -> {
@@ -109,6 +128,8 @@ class InicioActivity : AppCompatActivity() {
                 showElements()
             }
         }
+
+        createNotificationChannel()
         scheduleNotification()
     }
 
@@ -117,9 +138,10 @@ class InicioActivity : AppCompatActivity() {
         val pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
 
         val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val interval = 1000 * 10L
+        val interval = 60 * 1000L // Intervalo de 1 minuto
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, pendingIntent)
     }
+
     private fun hideElements() {
         textView.visibility = View.GONE
         imagenPrincipiante.visibility = View.GONE
@@ -145,11 +167,50 @@ class InicioActivity : AppCompatActivity() {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
-    private fun navigateToFragment(fragment: Fragment) {
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, fragment)
-        fragmentTransaction.addToBackStack(null)
-        fragmentTransaction.commit()
+    private fun createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = "canal1"
+            val descriptionText = "este es el canal1"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
+                description = descriptionText
+            }
+            val notificationManager: NotificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
+    }
+
+    private fun sendNotification() {
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.POST_NOTIFICATIONS
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.POST_NOTIFICATIONS),
+                REQUEST_CODE_POST_NOTIFICATIONS
+            )
+            return
+        }
+
+        with(NotificationManagerCompat.from(this)) {
+            notify(NOTIFICATION_ID, builder.build())
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            REQUEST_CODE_POST_NOTIFICATIONS -> {
+                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                    sendNotification()
+                } else {
+                    Toast.makeText(this, "Permission denied to post notifications", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 }
+
