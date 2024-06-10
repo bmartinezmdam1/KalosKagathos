@@ -37,6 +37,9 @@
         <activity
             android:name=".activities.Recycler"
             android:exported="false"></activity>
+        <activity
+            android:name=".activities.Camera"
+            android:exported="false"></activity>
         <activity android:name=".activities.RecyclerFragment" />
         <service
             android:name=".activities.Notificaciones"
