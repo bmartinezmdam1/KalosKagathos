@@ -33,7 +33,7 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.fitnesscoach.Ajustes"
+        android:name="com.example.fitnesscoach.AjustesFragment"
         android:label="@string/Ajustes"
         tools:layout="@layout/ajustes">
         <action

@@ -18,14 +18,13 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.example.fitnesscoach.R
 import com.example.fitnesscoach.databinding.CameraBinding
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-class Camera : AppCompatActivity() {
+class CameraActivity : AppCompatActivity() {
     private lateinit var viewBinding: CameraBinding
     private var imageCapture: ImageCapture? = null
     private lateinit var cameraExecutor: ExecutorService

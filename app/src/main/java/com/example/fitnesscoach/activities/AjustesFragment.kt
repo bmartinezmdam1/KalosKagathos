@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,11 +12,11 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
-import com.example.fitnesscoach.activities.Camera
+import com.example.fitnesscoach.activities.CameraActivity
 import com.example.fitnesscoach.activities.LoginActivity
 import com.google.firebase.firestore.FirebaseFirestore
 
-class Ajustes : Fragment() {
+class AjustesFragment : Fragment() {
     // Inicializa la instancia de Firebase Firestore
     private val db = FirebaseFirestore.getInstance()
 
@@ -117,7 +116,7 @@ class Ajustes : Fragment() {
 
         // Establecer listener para el botón 'Cambiar Foto'
         boton3.setOnClickListener {
-            val intent = Intent(activity, Camera::class.java)
+            val intent = Intent(activity, CameraActivity::class.java)
             startActivityForResult(intent, REQUEST_IMAGE_CAPTURE)
         }
 
