@@ -8,7 +8,6 @@ import androidx.core.app.NotificationManagerCompat
 import com.example.fitnesscoach.R
 import androidx.core.content.ContextCompat
 
-
 class NotificationService : IntentService("NotificationService") {
 
     override fun onHandleIntent(intent: Intent?) {
@@ -23,22 +22,25 @@ class NotificationService : IntentService("NotificationService") {
 
             // Mostrar la notificación
             with(NotificationManagerCompat.from(this)) {
+                // Verificar permisos para mostrar notificaciones
                 if (ContextCompat.checkSelfPermission(
                         this@NotificationService,
                         Manifest.permission.POST_NOTIFICATIONS
                     ) != PackageManager.PERMISSION_GRANTED
                 ) {
+                    // Si los permisos no están otorgados, salir del método
                     return
                 }
+                // Mostrar la notificación
                 notify(NOTIFICATION_ID, builder.build())
             }
-
-
         }
     }
 
     companion object {
+        // Identificador del canal de notificación
         private const val CHANNEL_ID = "channel_id"
+        // Identificador único de la notificación
         private const val NOTIFICATION_ID = 1001
     }
 }

@@ -36,8 +36,10 @@ class Camera : AppCompatActivity() {
         setContentView(viewBinding.root)
 
         if (allPermissionsGranted()) {
+            // Inicia la cámara si todos los permisos están otorgados
             startCamera()
         } else {
+            // Solicita permisos si no están otorgados
             ActivityCompat.requestPermissions(
                 this,
                 REQUIRED_PERMISSIONS,
@@ -45,8 +47,10 @@ class Camera : AppCompatActivity() {
             )
         }
 
+        // Listener para el botón de captura de imagen
         viewBinding.imageCaptureButton.setOnClickListener { takePhoto() }
 
+        // Inicializa el ExecutorService
         cameraExecutor = Executors.newSingleThreadExecutor()
     }
 
@@ -74,14 +78,16 @@ class Camera : AppCompatActivity() {
             ContextCompat.getMainExecutor(this),
             object : ImageCapture.OnImageSavedCallback {
                 override fun onError(exc: ImageCaptureException) {
-                    Log.e(TAG, "Photo capture failed: ${exc.message}", exc)
+                    // Maneja errores de captura de imagen
+                    Log.e(TAG, "Error al capturar la foto: ${exc.message}", exc)
                 }
 
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
-                    val msg = "Photo capture succeeded: ${output.savedUri}"
+                    val msg = "Captura de foto exitosa: ${output.savedUri}"
                     Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
                     Log.d(TAG, msg)
 
+                    // Envía la URI de la imagen de vuelta a la actividad anterior
                     val intent = Intent().apply {
                         putExtra("image_uri", output.savedUri.toString())
                     }
@@ -113,7 +119,7 @@ class Camera : AppCompatActivity() {
                 cameraProvider.bindToLifecycle(
                     this, cameraSelector, preview, imageCapture)
             } catch(exc: Exception) {
-                Log.e(TAG, "Use case binding failed", exc)
+                Log.e(TAG, "Error al enlazar casos de uso", exc)
             }
 
         }, ContextCompat.getMainExecutor(this))
@@ -137,8 +143,9 @@ class Camera : AppCompatActivity() {
             if (allPermissionsGranted()) {
                 startCamera()
             } else {
+                // Informa al usuario si los permisos no están otorgados
                 Toast.makeText(this,
-                    "Permissions not granted by the user.",
+                    "Permisos no otorgados por el usuario.",
                     Toast.LENGTH_SHORT).show()
                 finish()
             }

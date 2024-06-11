@@ -18,10 +18,10 @@ import com.example.fitnesscoach.activities.LoginActivity
 import com.google.firebase.firestore.FirebaseFirestore
 
 class Ajustes : Fragment() {
-    // Initialize Firebase Firestore instance
+    // Inicializa la instancia de Firebase Firestore
     private val db = FirebaseFirestore.getInstance()
 
-    // Declare UI elements
+    // Declara los elementos de la interfaz de usuario
     private lateinit var boton1: Button
     private lateinit var boton2: Button
     private lateinit var boton3: Button
@@ -38,10 +38,10 @@ class Ajustes : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+        // Infla el diseño para este fragmento
         val view = inflater.inflate(R.layout.ajustes, container, false)
 
-        // Initialize UI elements
+        // Inicializa los elementos de la interfaz de usuario
         boton1 = view.findViewById(R.id.BorrarDatos)
         boton2 = view.findViewById(R.id.CambiarDatos)
         boton3 = view.findViewById(R.id.cambiarFoto)
@@ -50,7 +50,7 @@ class Ajustes : Fragment() {
         nombre = view.findViewById(R.id.NombreUser)
         contrasena = view.findViewById(R.id.editContrasena)
 
-        // Set visibility for buttons and image view
+        // Establece la visibilidad de los botones y la imagen
         boton1.visibility = View.VISIBLE
         boton2.visibility = View.VISIBLE
         imagen.visibility = View.VISIBLE
@@ -62,7 +62,7 @@ class Ajustes : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         var username = arguments?.getString("username")
 
-        // Set click listener for 'Delete Data' button
+        // Establece el listener de clic para el botón 'Eliminar datos'
         boton1.setOnClickListener {
             val username = arguments?.getString("username")
             if (username != null) {
@@ -70,7 +70,7 @@ class Ajustes : Fragment() {
                 docRef.get()
                     .addOnSuccessListener { document ->
                         if (document.exists()) {
-                            // If user exists, delete the document
+                            // Si el usuario existe, elimina el documento
                             docRef.delete()
                                 .addOnSuccessListener {
                                     Toast.makeText(requireContext(), "Usuario $username eliminado con éxito.", Toast.LENGTH_SHORT).show()
@@ -92,21 +92,21 @@ class Ajustes : Fragment() {
             }
         }
 
-        // Set click listener for 'Change Data' button
+        // Establece el listener de clic para el botón 'Cambiar datos'
         boton2.setOnClickListener {
             val username = arguments?.getString("username")
 
-            // Validate username and password before updating data
+            // Valida el nombre de usuario y la contraseña antes de actualizar los datos
             if (!isUsernameValid()) return@setOnClickListener
             if (!isPasswordValid()) return@setOnClickListener
 
-            // Create a map of the new data
+            // Crea un mapa con los nuevos datos
             val data = hashMapOf(
                 "nombre" to nombre.text.toString(),
                 "contrasena" to contrasena.text.toString()
             )
 
-            // Update the Firestore document with new data
+            // Actualiza el documento de Firestore con los nuevos datos
             db.collection("usuarios").document(username.toString()).set(data).addOnSuccessListener {
                 Toast.makeText(requireContext(), "Datos cambiados", Toast.LENGTH_SHORT).show()
             }.addOnFailureListener {
@@ -114,13 +114,13 @@ class Ajustes : Fragment() {
             }
         }
 
-        // Set click listener for 'Change Photo' button
+        // Establece el listener de clic para el botón 'Cambiar foto'
         boton3.setOnClickListener {
             val intent = Intent(activity, Camera::class.java)
             startActivityForResult(intent, REQUEST_IMAGE_CAPTURE)
         }
 
-        // Set click listener for 'Show Data' button
+        // Establece el listener de clic para el botón 'Mostrar datos'
         boton4.setOnClickListener {
             val username = arguments?.getString("username")
             if (username != null) {
@@ -130,7 +130,7 @@ class Ajustes : Fragment() {
                         if (document.exists()) {
                             val nom = document.get("nombre")
                             val contra = document.get("contrasena")
-                            // Display the user's name and password in a Toast message
+                            // Muestra el nombre y la contraseña del usuario en un mensaje Toast
                             docRef.delete()
                                 .addOnSuccessListener {
                                     Toast.makeText(requireContext(), "Usuario :  $nom Contraseña $contra", Toast.LENGTH_SHORT).show()
@@ -152,7 +152,7 @@ class Ajustes : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
-            // Retrieve the image URI and set it to the ImageView
+            // Recupera la URI de la imagen y la establece en el ImageView
             val imageUri: Uri? = data?.getStringExtra("image_uri")?.let { Uri.parse(it) }
             imagen.setImageURI(imageUri)
         }
@@ -161,7 +161,7 @@ class Ajustes : Fragment() {
     private fun isUsernameValid(): Boolean {
         val username = nombre.text.toString()
 
-        // Validate the length of the username
+        // Valida la longitud del nombre de usuario
         if (username.length !in 6..20) {
             Toast.makeText(activity, "El nombre de usuario tiene que tener entre 6 y 20 caracteres", Toast.LENGTH_SHORT).show()
             return false
@@ -172,7 +172,7 @@ class Ajustes : Fragment() {
     private fun isPasswordValid(): Boolean {
         val password = contrasena.text.toString()
 
-        // Validate the length of the password
+        // Valida la longitud de la contraseña
         return if (password.length !in 6..20) {
             Toast.makeText(activity, "La contraseña tiene que tener entre 6 y 20 caracteres", Toast.LENGTH_SHORT).show()
             false

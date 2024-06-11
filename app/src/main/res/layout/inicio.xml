@@ -17,6 +17,7 @@
         android:layout_height="match_parent"
         app:defaultNavHost="true"
         app:navGraph="@navigation/mobile_navigation"
+
         />
 </FrameLayout>
 
@@ -112,7 +113,7 @@
         android:background="?attr/colorPrimary"
         app:titleTextColor="@android:color/white"
         tools:ignore="MissingConstraints"
-        app:title="@string/Bienvenido"
+        app:title=""
         android:fontFamily="@font/greek_freak"
         android:gravity="center"
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar"

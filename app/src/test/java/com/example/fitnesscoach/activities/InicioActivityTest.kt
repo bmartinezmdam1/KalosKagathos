@@ -11,14 +11,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
-import androidx.test.espresso.Espresso
-import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.assertion.ViewAssertions
-import androidx.test.espresso.matcher.ViewMatchers
-import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
-import androidx.test.espresso.matcher.ViewMatchers.withId
-import androidx.test.espresso.matcher.ViewMatchers.withText
+
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.fitnesscoach.R
@@ -30,10 +23,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.ArgumentCaptor
-import org.mockito.Mockito.*
 
-@RunWith(AndroidJUnit4::class)
 class InicioActivityTest {
 
     @get:Rule
@@ -58,7 +48,7 @@ class InicioActivityTest {
         val bitmapFromDrawable = (drawable as BitmapDrawable).bitmap
         assertNotNull(bitmapFromDrawable)
     }
-    @org.junit.jupiter.api.Test
+
     fun testActivityLaunch() {
         //el código es una copia de lo que se ve en los apuntes, sin embargo, no funciona
         //fun test_MainActivity_carga() {
