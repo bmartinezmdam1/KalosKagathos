@@ -41,7 +41,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintVertical_bias="0.3"
         style="@style/ButtonStyle"
-        android:fontFamily="@font/greek_freak"/>
+        android:fontFamily="@font/greek_freak"
+        android:backgroundTint="@color/black"
+        />
 
     <ImageView
         android:id="@+id/imagenIntermedio"
@@ -64,7 +66,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintVertical_bias="0.5"
         style="@style/ButtonStyle"
-        android:fontFamily="@font/greek_freak"/>
+        android:fontFamily="@font/greek_freak"
+        />
 
     <ImageView
         android:id="@+id/imagenAvanzado"
@@ -111,8 +114,9 @@
         app:title="@string/Bienvenido"
         android:fontFamily="@font/greek_freak"
         android:gravity="center"
-        android:theme="?attr/actionBarTheme"
-
+        android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+        app:popupTheme="@style/Theme.AppCompat.Light"
+        app:logo="@drawable/torch"
         />
 
 

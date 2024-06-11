@@ -27,7 +27,6 @@ class Ajustes : Fragment() {
     private lateinit var boton3: Button
     private lateinit var boton4: Button
     private lateinit var imagen: ImageView
-    private lateinit var correo: EditText
     private lateinit var nombre: EditText
     private lateinit var contrasena: EditText
 
@@ -181,6 +180,6 @@ class Ajustes : Fragment() {
     }
 
     companion object {
-        private const val REQUEST_IMAGE_CAPTURE = 1
+        const val REQUEST_IMAGE_CAPTURE = 1
     }
 }

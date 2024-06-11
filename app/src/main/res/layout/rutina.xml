@@ -18,7 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="Ejercicios"
+        app:title=""
         app:titleTextColor="@color/white"
         app:titleMarginStart="170dp"
         android:fontFamily="@font/greek_freak" />

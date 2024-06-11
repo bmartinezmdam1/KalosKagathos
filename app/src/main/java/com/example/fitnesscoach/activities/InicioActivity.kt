@@ -11,12 +11,14 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -43,6 +45,7 @@ class InicioActivity : AppCompatActivity() {
     private lateinit var imagenAvanzado: ImageView
     private lateinit var binding: InicioBinding
 
+    // Builder para la notificación
     private val builder by lazy {
         NotificationCompat.Builder(this, CHANNEL_ID)
             .setSmallIcon(R.drawable.kalos)
@@ -57,8 +60,11 @@ class InicioActivity : AppCompatActivity() {
         binding = InicioBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.toolbar)
+        // Configurar el Toolbar
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
 
+        // Configurar la navegación inferior
         val navView: BottomNavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         val appBarConfiguration = AppBarConfiguration(
@@ -66,10 +72,13 @@ class InicioActivity : AppCompatActivity() {
                 R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
             )
         )
-        val username = intent.getStringExtra("username")
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-        sendNotification("es hora de entrenar!")
+
+        // Enviar una notificación al iniciar la actividad
+        sendNotification("Es hora de entrenar!")
+
+        // Inicializar botones e imágenes
         principianteBoton = findViewById(R.id.botonPrincipiante)
         intermedioBoton = findViewById(R.id.botonIntermedio)
         avanzadoBoton = findViewById(R.id.botonAvanzado)
@@ -77,6 +86,7 @@ class InicioActivity : AppCompatActivity() {
         imagenIntermedio = findViewById(R.id.imagenIntermedio)
         imagenAvanzado = findViewById(R.id.imagenAvanzado)
 
+        // Configurar listeners para los botones
         principianteBoton.setOnClickListener {
             Toast.makeText(this, "Nivel principiante activado", Toast.LENGTH_SHORT).show()
             sendNotification("Ahora eres principiante!")
@@ -90,6 +100,7 @@ class InicioActivity : AppCompatActivity() {
             sendNotification("Ahora eres avanzado!")
         }
 
+        // Configurar listener para la navegación
         navView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_dashboard -> {
@@ -107,7 +118,7 @@ class InicioActivity : AppCompatActivity() {
                     if (navController.currentDestination?.id == R.id.navigation_home ||
                         navController.currentDestination?.id == R.id.navigation_dashboard) {
                         val bundle = Bundle()
-                        bundle.putString("username", username)
+                        bundle.putString("username", intent.getStringExtra("username"))
                         navController.navigate(R.id.navigation_notifications, bundle)
                         true
                     } else {
@@ -122,25 +133,28 @@ class InicioActivity : AppCompatActivity() {
             }
         }
 
+        // Mostrar elementos cuando se navega a la pantalla de inicio
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if (destination.id == R.id.navigation_home) {
                 showElements()
             }
         }
 
+        // Crear canal de notificación y programar la notificación
         createNotificationChannel()
         scheduleNotification()
     }
 
+    // Programar una notificación repetitiva
     private fun scheduleNotification() {
         val intent = Intent(this, AlarmReceiver::class.java)
         val pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
-
         val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val interval = 60 * 1000L // Intervalo de 1 minuto
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, pendingIntent)
     }
 
+    // Ocultar elementos de la interfaz
     private fun hideElements() {
         imagenPrincipiante.visibility = View.GONE
         imagenIntermedio.visibility = View.GONE
@@ -150,6 +164,7 @@ class InicioActivity : AppCompatActivity() {
         avanzadoBoton.visibility = View.GONE
     }
 
+    // Mostrar elementos de la interfaz
     private fun showElements() {
         imagenPrincipiante.visibility = View.VISIBLE
         imagenIntermedio.visibility = View.VISIBLE
@@ -164,6 +179,7 @@ class InicioActivity : AppCompatActivity() {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
+    // Crear el canal de notificación para dispositivos Android Oreo y superiores
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name = "canal1"
@@ -178,6 +194,7 @@ class InicioActivity : AppCompatActivity() {
         }
     }
 
+    // Enviar una notificación
     private fun sendNotification(message: String) {
         val intent = Intent(this, InicioActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -199,13 +216,6 @@ class InicioActivity : AppCompatActivity() {
                     Manifest.permission.POST_NOTIFICATIONS
                 ) != PackageManager.PERMISSION_GRANTED
             ) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
                 return
             }
             notify(NOTIFICATION_ID, builder.build())
@@ -217,11 +227,29 @@ class InicioActivity : AppCompatActivity() {
         when (requestCode) {
             REQUEST_CODE_POST_NOTIFICATIONS -> {
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                    sendNotification("es hora de entrenar!")
+                    sendNotification("Es hora de entrenar!")
                 } else {
                     Toast.makeText(this, "Permission denied to post notifications", Toast.LENGTH_SHORT).show()
                 }
             }
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        // Inflar el menú para el Toolbar
+        menuInflater.inflate(R.menu.toolbar_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.camaraicon -> {
+                // Navegar a un fragmento cuando se haga clic en el ícono del menú
+                hideElements()
+                findNavController(R.id.nav_host_fragment_activity_main).navigate(R.id.navigation_dashboard)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }
