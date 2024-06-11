@@ -17,6 +17,9 @@ import com.example.fitnesscoach.activities.Camera
 import com.example.fitnesscoach.activities.LoginActivity
 import com.google.firebase.firestore.FirebaseFirestore
 
+/**
+ * Clase Ajustes que extiende de Fragment para gestionar la configuración del usuario.
+ */
 class Ajustes : Fragment() {
     // Inicializa la instancia de Firebase Firestore
     private val db = FirebaseFirestore.getInstance()
@@ -34,6 +37,14 @@ class Ajustes : Fragment() {
         super.onCreate(savedInstanceState)
     }
 
+    /**
+     * Método para crear la vista del fragmento.
+     *
+     * @param inflater El LayoutInflater utilizado para inflar cualquier vista en el fragmento.
+     * @param container Si no es nulo, es el padre al que se le adjunta la interfaz de usuario del fragmento.
+     * @param savedInstanceState Si no es nulo, este fragmento se está recontruyendo de un estado guardado.
+     * @return La vista para el fragmento de interfaz de usuario.
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -58,6 +69,12 @@ class Ajustes : Fragment() {
         return view
     }
 
+    /**
+     * Método llamado inmediatamente después de que la vista ha sido creada.
+     *
+     * @param view La vista devuelta por onCreateView.
+     * @param savedInstanceState Si no es nulo, este fragmento se está recontruyendo de un estado guardado.
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         var username = arguments?.getString("username")
@@ -149,6 +166,13 @@ class Ajustes : Fragment() {
         }
     }
 
+    /**
+     * Método llamado cuando se obtiene un resultado de una actividad lanzada.
+     *
+     * @param requestCode El código de solicitud con el que se inició la actividad.
+     * @param resultCode El código de resultado devuelto por la actividad hija.
+     * @param data Un Intent que puede devolver datos resultantes.
+     */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
@@ -158,6 +182,11 @@ class Ajustes : Fragment() {
         }
     }
 
+    /**
+     * Método para validar el nombre de usuario.
+     *
+     * @return Verdadero si el nombre de usuario es válido, falso de lo contrario.
+     */
     private fun isUsernameValid(): Boolean {
         val username = nombre.text.toString()
 
@@ -169,6 +198,11 @@ class Ajustes : Fragment() {
         return true
     }
 
+    /**
+     * Método para validar la contraseña.
+     *
+     * @return Verdadero si la contraseña es válida, falso de lo contrario.
+     */
     private fun isPasswordValid(): Boolean {
         val password = contrasena.text.toString()
 
