@@ -1,6 +1,5 @@
 package com.example.fitnesscoach.activities
 
-import AlarmReceiver
 import android.Manifest
 import android.app.AlarmManager
 import android.app.NotificationChannel
@@ -46,7 +45,7 @@ class InicioActivity : AppCompatActivity() {
     private lateinit var binding: InicioBinding
 
     // Builder para la notificación
-    private val builder by lazy {
+    val builder by lazy {
         NotificationCompat.Builder(this, CHANNEL_ID)
             .setSmallIcon(R.drawable.kalos)
             .setContentTitle("Es hora de entrenar!")
@@ -243,7 +242,7 @@ class InicioActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.camaraicon -> {
+            R.id.pesaIcon -> {
                 // Navegar a un fragmento cuando se haga clic en el ícono del menú
                 hideElements()
                 findNavController(R.id.nav_host_fragment_activity_main).navigate(R.id.navigation_dashboard)

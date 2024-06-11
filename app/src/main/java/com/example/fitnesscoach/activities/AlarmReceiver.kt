@@ -1,3 +1,6 @@
+package com.example.fitnesscoach.activities
+
+
 import android.Manifest
 import android.app.PendingIntent
 import android.content.BroadcastReceiver
