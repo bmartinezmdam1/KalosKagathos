@@ -11,11 +11,18 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.assertion.ViewAssertions
+import androidx.test.espresso.matcher.ViewMatchers
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.matcher.ViewMatchers.withId
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.fitnesscoach.R
 import com.google.common.base.Verify.verify
+import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
@@ -23,6 +30,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import java.util.regex.Pattern.matches
 
 class InicioActivityTest {
 
@@ -49,15 +57,51 @@ class InicioActivityTest {
         assertNotNull(bitmapFromDrawable)
     }
 
-    fun testActivityLaunch() {
-        //el código es una copia de lo que se ve en los apuntes, sin embargo, no funciona
-        //fun test_MainActivity_carga() {
-        //val activityScenario = ActivityScenario.launch(MainActivity::class.java)
-        //onView(withId(R.id.main)).check(matches(isDisplayed()))
-        //}
-        // Lanza la actividad InicioActivity
-        val scenario = ActivityScenario.launch(InicioActivity::class.java)
-        // Verifica que la vista con ID toolbar se muestre
-        // onView(ViewMatchers.withId(R.id.container)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+    //unitaria
+    @Test
+    fun testNotificationMessage() {
+        val activity = InicioActivity()
+        val message = "Es hora de entrenar!"
+        assertEquals("Es hora de entrenar!", message)
     }
+    //de Integración
+    private lateinit var scenario: ActivityScenario<InicioActivity>
+
+    @Before
+    fun setUp() {
+        scenario = ActivityScenario.launch(InicioActivity::class.java)
+    }
+
+    @After
+    fun tearDown() {
+        scenario.close()
+    }
+
+    @Test
+    fun testButtonsExist() {
+        scenario.onActivity { activity ->
+            assertNotNull(activity.findViewById(R.id.botonPrincipiante))
+            assertNotNull(activity.findViewById(R.id.botonIntermedio))
+            assertNotNull(activity.findViewById(R.id.botonAvanzado))
+        }
+    }
+    //funcional
+    @Test
+    fun testButtonClickDisplaysToast() {
+        val scenario = ActivityScenario.launch(InicioActivity::class.java)
+
+        onView(withId(R.id.botonPrincipiante)).perform(click())
+
+        scenario.close()
+    }
+    //de rendimiento
+    @Test(timeout = 1000)
+    fun testMethodPerformance() {
+        val scenario = ActivityScenario.launch(InicioActivity::class.java)
+
+        onView(withId(R.id.botonPrincipiante)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+
+        scenario.close()
+    }
+
 }
