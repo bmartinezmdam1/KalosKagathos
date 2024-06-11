@@ -1,6 +1,5 @@
 package com.example.fitnesscoach.activities
 
-import AlarmReceiver
 import android.Manifest
 import android.app.AlarmManager
 import android.app.NotificationChannel
@@ -46,7 +45,7 @@ class InicioActivity : AppCompatActivity() {
     private lateinit var binding: InicioBinding
 
     // Builder para la notificación
-    private val builder by lazy {
+    val builder by lazy {
         NotificationCompat.Builder(this, CHANNEL_ID)
             .setSmallIcon(R.drawable.kalos)
             .setContentTitle("Es hora de entrenar!")
