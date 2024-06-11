@@ -1,0 +1,81 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:com.example.fitnesscoach.activities.ui.home////PointingToDeclaration/app/com.example.fitnesscoach.activities.ui.home/index.html
+$dokka.location:com.example.fitnesscoach.activities.ui.home/HomeFragment///PointingToDeclaration/app/com.example.fitnesscoach.activities.ui.home/-home-fragment/index.html
+$dokka.location:com.example.fitnesscoach.activities.ui.home/HomeFragment/HomeFragment/#/PointingToDeclaration/app/com.example.fitnesscoach.activities.ui.home/-home-fragment/-home-fragment.html
+$dokka.location:com.example.fitnesscoach.activities////PointingToDeclaration/app/com.example.fitnesscoach.activities/index.html
+$dokka.location:com.example.fitnesscoach.activities/AlarmReceiver///PointingToDeclaration/app/com.example.fitnesscoach.activities/-alarm-receiver/index.html
+$dokka.location:com.example.fitnesscoach.activities/AlarmReceiver/AlarmReceiver/#/PointingToDeclaration/app/com.example.fitnesscoach.activities/-alarm-receiver/-alarm-receiver.html
+$dokka.location:com.example.fitnesscoach.activities/AlarmReceiver/onReceive/#android.content.Context#android.content.Intent/PointingToDeclaration/app/com.example.fitnesscoach.activities/-alarm-receiver/on-receive.html
+$dokka.location:com.example.fitnesscoach.activities/Camera.Companion///PointingToDeclaration/app/com.example.fitnesscoach.activities/-camera/-companion/index.html
+$dokka.location:com.example.fitnesscoach.activities/Camera///PointingToDeclaration/app/com.example.fitnesscoach.activities/-camera/index.html
+$dokka.location:com.example.fitnesscoach.activities/Camera/Camera/#/PointingToDeclaration/app/com.example.fitnesscoach.activities/-camera/-camera.html
+$dokka.location:com.example.fitnesscoach.activities/Camera/onRequestPermissionsResult/#kotlin.Int#kotlin.Array[kotlin.String]#kotlin.IntArray/PointingToDeclaration/app/com.example.fitnesscoach.activities/-camera/on-request-permissions-result.html
+$dokka.location:com.example.fitnesscoach.activities/Ejercicio///PointingToDeclaration/app/com.example.fitnesscoach.activities/-ejercicio/index.html
+$dokka.location:com.example.fitnesscoach.activities/Ejercicio/Ejercicio/#kotlin.String#kotlin.String#kotlin.Int/PointingToDeclaration/app/com.example.fitnesscoach.activities/-ejercicio/-ejercicio.html
+$dokka.location:com.example.fitnesscoach.activities/Ejercicio/name/#/PointingToDeclaration/app/com.example.fitnesscoach.activities/-ejercicio/name.html
+$dokka.location:com.example.fitnesscoach.activities/Ejercicio/repeticiones/#/PointingToDeclaration/app/com.example.fitnesscoach.activities/-ejercicio/repeticiones.html
+$dokka.location:com.example.fitnesscoach.activities/Ejercicio/repeticiones1/#/PointingToDeclaration/app/com.example.fitnesscoach.activities/-ejercicio/repeticiones1.html
+$dokka.location:com.example.fitnesscoach.activities/EjerciciosAdapter.ViewHolder///PointingToDeclaration/app/com.example.fitnesscoach.activities/-ejercicios-adapter/-view-holder/index.html
+$dokka.location:com.example.fitnesscoach.activities/EjerciciosAdapter.ViewHolder/ViewHolder/#android.view.View/PointingToDeclaration/app/com.example.fitnesscoach.activities/-ejercicios-adapter/-view-holder/-view-holder.html
+$dokka.location:com.example.fitnesscoach.activities/EjerciciosAdapter.ViewHolder/bindRow/#com.example.fitnesscoach.activities.Ejercicio/PointingToDeclaration/app/com.example.fitnesscoach.activities/-ejercicios-adapter/-view-holder/bind-row.html
+$dokka.location:com.example.fitnesscoach.activities/EjerciciosAdapter.ViewHolder/subtitleTextView/#/PointingToDeclaration/app/com.example.fitnesscoach.activities/-ejercicios-adapter/-view-holder/subtitle-text-view.html
+$dokka.location:com.example.fitnesscoach.activities/EjerciciosAdapter.ViewHolder/titleTextView/#/PointingToDeclaration/app/com.example.fitnesscoach.activities/-ejercicios-adapter/-view-holder/title-text-view.html
+$dokka.location:com.example.fitnesscoach.activities/EjerciciosAdapter///PointingToDeclaration/app/com.example.fitnesscoach.activities/-ejercicios-adapter/index.html
+$dokka.location:com.example.fitnesscoach.activities/EjerciciosAdapter/EjerciciosAdapter/#android.content.Context#kotlin.collections.List[com.example.fitnesscoach.activities.Ejercicio]/PointingToDeclaration/app/com.example.fitnesscoach.activities/-ejercicios-adapter/-ejercicios-adapter.html
+$dokka.location:com.example.fitnesscoach.activities/EjerciciosAdapter/getItemCount/#/PointingToDeclaration/app/com.example.fitnesscoach.activities/-ejercicios-adapter/get-item-count.html
+$dokka.location:com.example.fitnesscoach.activities/EjerciciosAdapter/onBindViewHolder/#com.example.fitnesscoach.activities.EjerciciosAdapter.ViewHolder#kotlin.Int/PointingToDeclaration/app/com.example.fitnesscoach.activities/-ejercicios-adapter/on-bind-view-holder.html
+$dokka.location:com.example.fitnesscoach.activities/EjerciciosAdapter/onCreateViewHolder/#android.view.ViewGroup#kotlin.Int/PointingToDeclaration/app/com.example.fitnesscoach.activities/-ejercicios-adapter/on-create-view-holder.html
+$dokka.location:com.example.fitnesscoach.activities/InicioActivity.Companion///PointingToDeclaration/app/com.example.fitnesscoach.activities/-inicio-activity/-companion/index.html
+$dokka.location:com.example.fitnesscoach.activities/InicioActivity.Companion/CHANNEL_ID/#/PointingToDeclaration/app/com.example.fitnesscoach.activities/-inicio-activity/-companion/-c-h-a-n-n-e-l_-i-d.html
+$dokka.location:com.example.fitnesscoach.activities/InicioActivity.Companion/NOTIFICATION_ID/#/PointingToDeclaration/app/com.example.fitnesscoach.activities/-inicio-activity/-companion/-n-o-t-i-f-i-c-a-t-i-o-n_-i-d.html
+$dokka.location:com.example.fitnesscoach.activities/InicioActivity.Companion/REQUEST_CODE_POST_NOTIFICATIONS/#/PointingToDeclaration/app/com.example.fitnesscoach.activities/-inicio-activity/-companion/-r-e-q-u-e-s-t_-c-o-d-e_-p-o-s-t_-n-o-t-i-f-i-c-a-t-i-o-n-s.html
+$dokka.location:com.example.fitnesscoach.activities/InicioActivity///PointingToDeclaration/app/com.example.fitnesscoach.activities/-inicio-activity/index.html
+$dokka.location:com.example.fitnesscoach.activities/InicioActivity/InicioActivity/#/PointingToDeclaration/app/com.example.fitnesscoach.activities/-inicio-activity/-inicio-activity.html
+$dokka.location:com.example.fitnesscoach.activities/InicioActivity/builder/#/PointingToDeclaration/app/com.example.fitnesscoach.activities/-inicio-activity/builder.html
+$dokka.location:com.example.fitnesscoach.activities/InicioActivity/onCreateOptionsMenu/#android.view.Menu?/PointingToDeclaration/app/com.example.fitnesscoach.activities/-inicio-activity/on-create-options-menu.html
+$dokka.location:com.example.fitnesscoach.activities/InicioActivity/onOptionsItemSelected/#android.view.MenuItem/PointingToDeclaration/app/com.example.fitnesscoach.activities/-inicio-activity/on-options-item-selected.html
+$dokka.location:com.example.fitnesscoach.activities/InicioActivity/onRequestPermissionsResult/#kotlin.Int#kotlin.Array[kotlin.String]#kotlin.IntArray/PointingToDeclaration/app/com.example.fitnesscoach.activities/-inicio-activity/on-request-permissions-result.html
+$dokka.location:com.example.fitnesscoach.activities/InicioActivity/onSupportNavigateUp/#/PointingToDeclaration/app/com.example.fitnesscoach.activities/-inicio-activity/on-support-navigate-up.html
+$dokka.location:com.example.fitnesscoach.activities/LoginActivity///PointingToDeclaration/app/com.example.fitnesscoach.activities/-login-activity/index.html
+$dokka.location:com.example.fitnesscoach.activities/LoginActivity/LoginActivity/#/PointingToDeclaration/app/com.example.fitnesscoach.activities/-login-activity/-login-activity.html
+$dokka.location:com.example.fitnesscoach.activities/LoginActivity/btnEmpezar/#android.view.View/PointingToDeclaration/app/com.example.fitnesscoach.activities/-login-activity/btn-empezar.html
+$dokka.location:com.example.fitnesscoach.activities/MainActivity///PointingToDeclaration/app/com.example.fitnesscoach.activities/-main-activity/index.html
+$dokka.location:com.example.fitnesscoach.activities/MainActivity/MainActivity/#/PointingToDeclaration/app/com.example.fitnesscoach.activities/-main-activity/-main-activity.html
+$dokka.location:com.example.fitnesscoach.activities/Notificaciones///PointingToDeclaration/app/com.example.fitnesscoach.activities/-notificaciones/index.html
+$dokka.location:com.example.fitnesscoach.activities/Notificaciones/CHANNEL_ID/#/PointingToDeclaration/app/com.example.fitnesscoach.activities/-notificaciones/-c-h-a-n-n-e-l_-i-d.html
+$dokka.location:com.example.fitnesscoach.activities/Notificaciones/Notificaciones/#/PointingToDeclaration/app/com.example.fitnesscoach.activities/-notificaciones/-notificaciones.html
+$dokka.location:com.example.fitnesscoach.activities/Notificaciones/onCreate/#/PointingToDeclaration/app/com.example.fitnesscoach.activities/-notificaciones/on-create.html
+$dokka.location:com.example.fitnesscoach.activities/NotificationService.Companion///PointingToDeclaration/app/com.example.fitnesscoach.activities/-notification-service/-companion/index.html
+$dokka.location:com.example.fitnesscoach.activities/NotificationService///PointingToDeclaration/app/com.example.fitnesscoach.activities/-notification-service/index.html
+$dokka.location:com.example.fitnesscoach.activities/NotificationService/NotificationService/#/PointingToDeclaration/app/com.example.fitnesscoach.activities/-notification-service/-notification-service.html
+$dokka.location:com.example.fitnesscoach.activities/RecyclerFragment///PointingToDeclaration/app/com.example.fitnesscoach.activities/-recycler-fragment/index.html
+$dokka.location:com.example.fitnesscoach.activities/RecyclerFragment/RecyclerFragment/#/PointingToDeclaration/app/com.example.fitnesscoach.activities/-recycler-fragment/-recycler-fragment.html
+$dokka.location:com.example.fitnesscoach.activities/RecyclerFragment/onCreateView/#android.view.LayoutInflater#android.view.ViewGroup?#android.os.Bundle?/PointingToDeclaration/app/com.example.fitnesscoach.activities/-recycler-fragment/on-create-view.html
+$dokka.location:com.example.fitnesscoach.activities/RegistroActivity///PointingToDeclaration/app/com.example.fitnesscoach.activities/-registro-activity/index.html
+$dokka.location:com.example.fitnesscoach.activities/RegistroActivity/RegistroActivity/#/PointingToDeclaration/app/com.example.fitnesscoach.activities/-registro-activity/-registro-activity.html
+$dokka.location:com.example.fitnesscoach.activities/RegistroActivity/btnRegistrar/#android.view.View/PointingToDeclaration/app/com.example.fitnesscoach.activities/-registro-activity/btn-registrar.html
+$dokka.location:com.example.fitnesscoach.activities/Row///PointingToDeclaration/app/com.example.fitnesscoach.activities/-row/index.html
+$dokka.location:com.example.fitnesscoach.activities/Row/Row/#kotlin.String#kotlin.String/PointingToDeclaration/app/com.example.fitnesscoach.activities/-row/-row.html
+$dokka.location:com.example.fitnesscoach.activities/Row/hex/#/PointingToDeclaration/app/com.example.fitnesscoach.activities/-row/hex.html
+$dokka.location:com.example.fitnesscoach.activities/Row/name/#/PointingToDeclaration/app/com.example.fitnesscoach.activities/-row/name.html
+$dokka.location:com.example.fitnesscoach.data////PointingToDeclaration/app/com.example.fitnesscoach.data/index.html
+$dokka.location:com.example.fitnesscoach.data/Exercise///PointingToDeclaration/app/com.example.fitnesscoach.data/-exercise/index.html
+$dokka.location:com.example.fitnesscoach.data/Exercise/Exercise/#kotlin.String#kotlin.String#android.graphics.drawable.Drawable/PointingToDeclaration/app/com.example.fitnesscoach.data/-exercise/-exercise.html
+$dokka.location:com.example.fitnesscoach.data/Exercise/imagen/#/PointingToDeclaration/app/com.example.fitnesscoach.data/-exercise/imagen.html
+$dokka.location:com.example.fitnesscoach.data/Exercise/nombre/#/PointingToDeclaration/app/com.example.fitnesscoach.data/-exercise/nombre.html
+$dokka.location:com.example.fitnesscoach.data/Exercise/repeticiones/#/PointingToDeclaration/app/com.example.fitnesscoach.data/-exercise/repeticiones.html
+$dokka.location:com.example.fitnesscoach////PointingToDeclaration/app/com.example.fitnesscoach/index.html
+$dokka.location:com.example.fitnesscoach/Ajustes.Companion///PointingToDeclaration/app/com.example.fitnesscoach/-ajustes/-companion/index.html
+$dokka.location:com.example.fitnesscoach/Ajustes.Companion/REQUEST_IMAGE_CAPTURE/#/PointingToDeclaration/app/com.example.fitnesscoach/-ajustes/-companion/-r-e-q-u-e-s-t_-i-m-a-g-e_-c-a-p-t-u-r-e.html
+$dokka.location:com.example.fitnesscoach/Ajustes///PointingToDeclaration/app/com.example.fitnesscoach/-ajustes/index.html
+$dokka.location:com.example.fitnesscoach/Ajustes/Ajustes/#/PointingToDeclaration/app/com.example.fitnesscoach/-ajustes/-ajustes.html
+$dokka.location:com.example.fitnesscoach/Ajustes/onActivityResult/#kotlin.Int#kotlin.Int#android.content.Intent?/PointingToDeclaration/app/com.example.fitnesscoach/-ajustes/on-activity-result.html
+$dokka.location:com.example.fitnesscoach/Ajustes/onCreate/#android.os.Bundle?/PointingToDeclaration/app/com.example.fitnesscoach/-ajustes/on-create.html
+$dokka.location:com.example.fitnesscoach/Ajustes/onCreateView/#android.view.LayoutInflater#android.view.ViewGroup?#android.os.Bundle?/PointingToDeclaration/app/com.example.fitnesscoach/-ajustes/on-create-view.html
+$dokka.location:com.example.fitnesscoach/Ajustes/onViewCreated/#android.view.View#android.os.Bundle?/PointingToDeclaration/app/com.example.fitnesscoach/-ajustes/on-view-created.html
+com.example.fitnesscoach
+com.example.fitnesscoach.activities
+com.example.fitnesscoach.activities.ui.home
+com.example.fitnesscoach.data
+
