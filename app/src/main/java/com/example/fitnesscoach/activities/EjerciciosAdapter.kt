@@ -41,7 +41,7 @@ class EjerciciosAdapter(private val context: Context, private val ejercicios: Li
             itemView.setOnClickListener {
                 // Aquí puedes manejar la acción cuando se hace clic en el elemento
                 // Por ejemplo, puedes abrir una nueva actividad o mostrar un diálogo
-                Toast.makeText(context, "Haz hecho clic en ${ejer.name}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Has hecho clic en ${ejer.name}", Toast.LENGTH_SHORT).show()
             }
         }
     }
