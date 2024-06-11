@@ -33,8 +33,22 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    tasks.dokkaHtml.configure {
+        outputDirectory.set(file("../documentation/html"))
+    }
+
     buildFeatures {
         viewBinding = true
+    }
+}
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("com.android.tools.build:gradle:8.2.1")
+        classpath("com.google.gms:google-services:4.4.1")
     }
 }
 

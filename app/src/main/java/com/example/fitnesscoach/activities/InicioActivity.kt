@@ -242,7 +242,7 @@ class InicioActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.pesaIcon -> {
+            R.id.muscle -> {
                 // Navegar a un fragmento cuando se haga clic en el ícono del menú
                 hideElements()
                 findNavController(R.id.nav_host_fragment_activity_main).navigate(R.id.navigation_dashboard)
