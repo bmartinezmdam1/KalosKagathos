@@ -14,7 +14,8 @@
         android:layout_height="150dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:src="@drawable/menelaokino"/>
+        android:src="@drawable/menelaokino"
+        android:layout_marginBottom="20dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -24,7 +25,8 @@
         android:textSize="35sp"
         android:textStyle="bold"
         android:textColor="@color/black"
-        android:fontFamily="@font/greek_freak"/>
+        android:fontFamily="@font/greek_freak"
+        android:layout_marginBottom="20dp"/>
 
     <EditText
         android:layout_width="300dp"
@@ -74,19 +76,8 @@
         android:textColor="@color/black"
         android:textColorHint="@color/black"
         android:backgroundTint="@color/black"
-        android:fontFamily="@font/greek_freak"/>
-
-    <EditText
-        android:id="@+id/ConfirmarContrasena"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:hint="País"
-        android:textColor="@color/white"
-        android:textColorHint="@color/black"
-        android:backgroundTint="@color/black"
-        android:fontFamily="@font/greek_freak"/>
+        android:fontFamily="@font/greek_freak"
+        android:layout_marginBottom="20dp"/>
 
     <Button
         android:id="@+id/buttonRegistrarse"
@@ -95,8 +86,6 @@
         android:layout_gravity="center_horizontal"
         android:text="Registrate"
         android:layout_marginTop="40dp"
-        android:backgroundTint="@color/purple_500"
-        android:textColor="@color/black"
         android:onClick="btnRegistrar"
         style="@style/ButtonStyle"
         android:fontFamily="@font/greek_freak"

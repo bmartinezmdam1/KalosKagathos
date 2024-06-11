@@ -29,7 +29,7 @@ class RegistroActivity : Activity(){
         editTextNombre = findViewById(R.id.usernameEdit)
         editTextEmail = findViewById(R.id.emailEdit)
         editTextContrasena = findViewById(R.id.passwordEdit)
-        editTextConfirmarContrasena = findViewById(R.id.ConfirmarContrasena)
+        editTextConfirmarContrasena = findViewById(R.id.confirmEdit)
     }
 
     fun btnRegistrar(view: View) {

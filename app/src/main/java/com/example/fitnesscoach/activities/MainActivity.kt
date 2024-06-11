@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var principianteBoton: Button
     private lateinit var intermedioBoton: Button
     private lateinit var avanzadoBoton: Button
-    private lateinit var textView: TextView
     private lateinit var imagenPrincipiante: ImageView
     private lateinit var imagenIntermedio: ImageView
     private lateinit var imagenAvanzado: ImageView
@@ -29,7 +28,6 @@ class MainActivity : AppCompatActivity() {
         principianteBoton = findViewById(R.id.botonPrincipiante)
         intermedioBoton = findViewById(R.id.botonIntermedio)
         avanzadoBoton = findViewById(R.id.botonAvanzado)
-        textView = findViewById(R.id.textView)
         imagenPrincipiante = findViewById(R.id.imagenPrincipiante)
         imagenIntermedio = findViewById(R.id.imagenIntermedio)
         imagenAvanzado = findViewById(R.id.imagenAvanzado)

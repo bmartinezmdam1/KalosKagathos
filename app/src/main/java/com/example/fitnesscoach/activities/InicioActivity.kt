@@ -38,7 +38,6 @@ class InicioActivity : AppCompatActivity() {
     private lateinit var principianteBoton: Button
     private lateinit var intermedioBoton: Button
     private lateinit var avanzadoBoton: Button
-    private lateinit var textView: TextView
     private lateinit var imagenPrincipiante: ImageView
     private lateinit var imagenIntermedio: ImageView
     private lateinit var imagenAvanzado: ImageView
@@ -74,7 +73,6 @@ class InicioActivity : AppCompatActivity() {
         principianteBoton = findViewById(R.id.botonPrincipiante)
         intermedioBoton = findViewById(R.id.botonIntermedio)
         avanzadoBoton = findViewById(R.id.botonAvanzado)
-        textView = findViewById(R.id.textView)
         imagenPrincipiante = findViewById(R.id.imagenPrincipiante)
         imagenIntermedio = findViewById(R.id.imagenIntermedio)
         imagenAvanzado = findViewById(R.id.imagenAvanzado)
@@ -144,7 +142,6 @@ class InicioActivity : AppCompatActivity() {
     }
 
     private fun hideElements() {
-        textView.visibility = View.GONE
         imagenPrincipiante.visibility = View.GONE
         imagenIntermedio.visibility = View.GONE
         imagenAvanzado.visibility = View.GONE
@@ -154,7 +151,6 @@ class InicioActivity : AppCompatActivity() {
     }
 
     private fun showElements() {
-        textView.visibility = View.VISIBLE
         imagenPrincipiante.visibility = View.VISIBLE
         imagenIntermedio.visibility = View.VISIBLE
         imagenAvanzado.visibility = View.VISIBLE
