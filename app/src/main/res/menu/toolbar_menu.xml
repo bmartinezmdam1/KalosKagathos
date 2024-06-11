@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:id="@+id/camaraicon"
-    android:icon="@drawable/ic_home_black_24dp"
+    android:icon="@drawable/muscle"
     android:title="Camara"
     app:showAsAction="ifRoom"/>
 </menu>
