@@ -2,14 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_home_black_24dp"
+        android:id="@+id/home"
+        android:icon="@drawable/home"
         android:title="@string/Inicio"
-        android:fontFamily="@font/greek_freak"/>
+        android:fontFamily="@font/greek_freak" />
 
     <item
         android:id="@+id/navigation_dashboard"
-        android:icon="@drawable/images"
+        android:icon="@drawable/dumbbell"
         android:title="@string/Ejercicios"
         android:fontFamily="@font/greek_freak"/>
 
