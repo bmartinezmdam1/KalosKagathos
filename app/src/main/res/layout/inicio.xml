@@ -118,7 +118,6 @@
         android:gravity="center"
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
         app:popupTheme="@style/Theme.AppCompat.Light"
-        app:logo="@drawable/torch"
         />
 
 
