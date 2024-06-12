@@ -25,8 +25,11 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 class CameraActivity : AppCompatActivity() {
+    // Enlace a la vista de binding
     private lateinit var viewBinding: CameraBinding
+    // Objeto de captura de imagen
     private var imageCapture: ImageCapture? = null
+    // ExecutorService para operaciones de cámara en segundo plano
     private lateinit var cameraExecutor: ExecutorService
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,24 +57,29 @@ class CameraActivity : AppCompatActivity() {
     }
 
     private fun takePhoto() {
+        // Obtiene la instancia de ImageCapture
         val imageCapture = imageCapture ?: return
 
+        // Formatea el nombre de la imagen usando la fecha y hora actual
         val name = SimpleDateFormat(FILENAME_FORMAT, Locale.US)
             .format(System.currentTimeMillis())
+        // Configura los valores de contenido para la imagen
         val contentValues = ContentValues().apply {
             put(MediaStore.MediaColumns.DISPLAY_NAME, name)
             put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg")
-            if(Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
                 put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/CameraX-Image")
             }
         }
 
+        // Configura las opciones de salida para la captura de imagen
         val outputOptions = ImageCapture.OutputFileOptions
             .Builder(contentResolver,
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                 contentValues)
             .build()
 
+        // Captura la imagen
         imageCapture.takePicture(
             outputOptions,
             ContextCompat.getMainExecutor(this),
@@ -82,6 +90,7 @@ class CameraActivity : AppCompatActivity() {
                 }
 
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
+                    // Muestra un mensaje de éxito
                     val msg = "Captura de foto exitosa: ${output.savedUri}"
                     Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
                     Log.d(TAG, msg)
@@ -98,32 +107,40 @@ class CameraActivity : AppCompatActivity() {
     }
 
     private fun startCamera() {
+        // Obtiene el futuro proveedor de cámara
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
 
+        // Añade un listener para cuando el proveedor esté listo
         cameraProviderFuture.addListener({
+            // Obtiene el proveedor de cámara
             val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
 
+            // Construye la previsualización
             val preview = Preview.Builder()
                 .build()
                 .also {
                     it.setSurfaceProvider(viewBinding.viewFinder.surfaceProvider)
                 }
 
+            // Configura la captura de imagen
             imageCapture = ImageCapture.Builder().build()
 
+            // Selecciona la cámara trasera por defecto
             val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
             try {
+                // Desenlaza todos los casos de uso y enlaza la cámara con los nuevos casos de uso
                 cameraProvider.unbindAll()
                 cameraProvider.bindToLifecycle(
                     this, cameraSelector, preview, imageCapture)
-            } catch(exc: Exception) {
+            } catch (exc: Exception) {
                 Log.e(TAG, "Error al enlazar casos de uso", exc)
             }
 
         }, ContextCompat.getMainExecutor(this))
     }
 
+    // Verifica si todos los permisos necesarios están otorgados
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
         ContextCompat.checkSelfPermission(
             baseContext, it) == PackageManager.PERMISSION_GRANTED
@@ -131,15 +148,16 @@ class CameraActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        // Apaga el ExecutorService
         cameraExecutor.shutdown()
     }
 
     override fun onRequestPermissionsResult(
-        requestCode: Int, permissions: Array<String>, grantResults:
-        IntArray) {
+        requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == REQUEST_CODE_PERMISSIONS) {
             if (allPermissionsGranted()) {
+                // Inicia la cámara si los permisos fueron otorgados
                 startCamera()
             } else {
                 // Informa al usuario si los permisos no están otorgados
@@ -152,9 +170,13 @@ class CameraActivity : AppCompatActivity() {
     }
 
     companion object {
+        // Tag para el logging
         private const val TAG = "CameraXApp"
+        // Formato de nombre de archivo
         private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
+        // Código de solicitud de permisos
         private const val REQUEST_CODE_PERMISSIONS = 10
+        // Lista de permisos requeridos
         private val REQUIRED_PERMISSIONS =
             mutableListOf(
                 Manifest.permission.CAMERA
