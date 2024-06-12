@@ -48,5 +48,6 @@
     <string name="IniciarSesion">Iniciar Sesión</string>
     <string name="Inicio">Inicio</string>
     <string name="Principiante">Principiante</string>
+    <string name="Nombre">Nombre</string>
 
 </resources>

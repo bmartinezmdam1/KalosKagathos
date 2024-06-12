@@ -95,7 +95,7 @@ class AjustesFragment : Fragment() {
         // Establecer listener para el botón 'Cambiar Datos'
         boton2.setOnClickListener {
             val username = arguments?.getString("username")
-
+            var correo1 = arguments?.getString("correo")
             // Validar nombre de usuario y contraseña antes de actualizar datos
             if (!isUsernameValid()) return@setOnClickListener
             if (!isPasswordValid()) return@setOnClickListener
@@ -107,7 +107,7 @@ class AjustesFragment : Fragment() {
             )
 
             // Actualizar el documento en Firestore con los nuevos datos
-            db.collection("usuarios").document(username.toString()).set(data).addOnSuccessListener {
+            db.collection("usuarios").document(correo1.toString()).set(data).addOnSuccessListener {
                 Toast.makeText(requireContext(), "Datos cambiados", Toast.LENGTH_SHORT).show()
             }.addOnFailureListener {
                 Toast.makeText(requireContext(), "Algo ha fallado...", Toast.LENGTH_SHORT).show()
@@ -123,15 +123,17 @@ class AjustesFragment : Fragment() {
         // Establecer listener para el botón 'Mostrar Datos'
         boton4.setOnClickListener {
             val username = arguments?.getString("username")
+            var correo1 = arguments?.getString("correo")
+
             if (username != null) {
-                val docRef = db.collection("usuarios").document(username)
+                val docRef = db.collection("usuarios").document(correo1.toString())
                 docRef.get()
                     .addOnSuccessListener { document ->
                         if (document.exists()) {
                             val nom = document.get("nombre")
                             val contra = document.get("contrasena")
                             // Mostrar el nombre y la contraseña del usuario en un mensaje Toast
-                            docRef.delete()
+                            docRef.get()
                                 .addOnSuccessListener {
                                     Toast.makeText(requireContext(), "Usuario :  $nom Contraseña $contra", Toast.LENGTH_SHORT).show()
                                 }

@@ -118,6 +118,7 @@ class InicioActivity : AppCompatActivity() {
                         navController.currentDestination?.id == R.id.navigation_dashboard) {
                         val bundle = Bundle()
                         bundle.putString("username", intent.getStringExtra("username"))
+                        bundle.putString("correo", intent.getStringExtra("correo"))
                         navController.navigate(R.id.navigation_notifications, bundle)
                         true
                     } else {

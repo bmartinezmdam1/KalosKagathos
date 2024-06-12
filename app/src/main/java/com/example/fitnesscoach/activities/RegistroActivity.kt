@@ -54,7 +54,7 @@ class RegistroActivity : Activity() {
 
                 // Guardar datos de registro en Firestore
                 val data = hashMapOf(
-                    "nombre" to editTextEmail.text.toString(),
+                    "nombre" to editTextNombre.text.toString(),
                     "contrasena" to editTextContrasena.text.toString()
                 )
 
